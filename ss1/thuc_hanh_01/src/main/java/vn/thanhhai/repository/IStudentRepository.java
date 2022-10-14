@@ -1,6 +1,8 @@
-package vn.codegym.repository;
+package vn.thanhhai.repository;
 
-import vn.codegym.model.Student;
+
+
+import vn.thanhhai.model.Student;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package vn.codegym.model;
+package vn.thanhhai.model;
 
 public class Student {
     private int id;
