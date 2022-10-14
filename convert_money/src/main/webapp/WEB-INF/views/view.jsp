@@ -8,9 +8,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+<h1>Convert To Money</h1>
+<form method="post">
+    <input type="number" placeholder="Input usd to convert" name="usd">
+    <input type="submit" value="Convert">
+    <p>USD:${usd}</p>
+    <p>VND:${vnd}</p>
+</form>
 </body>
 </html>
