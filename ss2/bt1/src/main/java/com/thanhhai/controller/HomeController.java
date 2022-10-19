@@ -21,7 +21,7 @@ public class HomeController {
     }
 
     @PostMapping("/tinh")
-    public String cong(@RequestParam int a, int b, String tinh, Model model) {
+    public String tinh(@RequestParam int a, int b, String tinh, Model model) {
         model.addAttribute("a", a);
         model.addAttribute("b", b);
         model.addAttribute("ketqua", calcService.cong(a, b, tinh));

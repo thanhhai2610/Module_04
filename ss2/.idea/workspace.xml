@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d2c4c675-b202-4cb9-b5ef-246e8ceac900" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../ss1/thuc_hanh_01/src/main/webapp/WEB-INF/views/newForm.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/.gradle/6.1/executionHistory/executionHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/.gradle/6.1/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/.gradle/6.1/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/.gradle/6.1/fileContent/fileContent.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/.gradle/6.1/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/.gradle/6.1/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/.gradle/6.1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/.gradle/6.1/javaCompile/classAnalysis.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/.gradle/6.1/javaCompile/javaCompile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/.gradle/6.1/javaCompile/taskHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/.gradle/checksums/checksums.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/.gradle/vcs-1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/build/classes/java/main/convert_money/controller/MoneyController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/build/classes/java/main/convert_money/service/IServiceMoney.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/build/classes/java/main/convert_money/service/impl/ServiceMoney.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/build/libs/convert_money-1.0-SNAPSHOT.war" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/build/tmp/war/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/src/main/java/convert_money/controller/MoneyController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/src/main/java/convert_money/service/IServiceMoney.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/src/main/java/convert_money/service/impl/ServiceMoney.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/src/main/webapp/WEB-INF/applicationContext.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/src/main/webapp/WEB-INF/dispatcher-servlet.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/src/main/webapp/WEB-INF/views/view.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../convert_money/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/.gradle/6.1/executionHistory/executionHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/.gradle/6.1/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/.gradle/6.1/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/.gradle/6.1/fileContent/fileContent.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/.gradle/6.1/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/.gradle/6.1/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/.gradle/6.1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/.gradle/6.1/javaCompile/classAnalysis.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/.gradle/6.1/javaCompile/javaCompile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/.gradle/6.1/javaCompile/taskHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/.gradle/checksums/checksums.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/.gradle/vcs-1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/.idea/webContexts.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/build/classes/java/main/dictionary/controller/DictionaryController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/build/classes/java/main/dictionary/model/DictionaryApp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/build/classes/java/main/dictionary/repository/IDictionaryRepo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/build/classes/java/main/dictionary/repository/impl/DictionaryRepo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/build/classes/java/main/dictionary/service/IDictionaryService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/build/classes/java/main/dictionary/service/impl/DictionaryService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/build/libs/dictionary-1.0-SNAPSHOT.war" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/build/tmp/war/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/src/main/java/dictionary/controller/DictionaryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/src/main/java/dictionary/model/DictionaryApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/src/main/java/dictionary/repository/IDictionaryRepo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/src/main/java/dictionary/repository/impl/DictionaryRepo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/src/main/java/dictionary/service/IDictionaryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/src/main/java/dictionary/service/impl/DictionaryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/src/main/webapp/WEB-INF/applicationContext.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/src/main/webapp/WEB-INF/dispatcher-servlet.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/src/main/webapp/WEB-INF/views/list.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dictionary/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss1/thuc_hanh_01/.gradle/6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ss1/thuc_hanh_01/.gradle/6.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss1/thuc_hanh_01/.gradle/6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../ss1/thuc_hanh_01/.gradle/6.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss1/thuc_hanh_01/.gradle/6.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ss1/thuc_hanh_01/.gradle/6.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss1/thuc_hanh_01/.gradle/6.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../ss1/thuc_hanh_01/.gradle/6.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss1/thuc_hanh_01/.gradle/6.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../ss1/thuc_hanh_01/.gradle/6.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss1/thuc_hanh_01/.gradle/6.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../ss1/thuc_hanh_01/.gradle/6.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss1/thuc_hanh_01/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../ss1/thuc_hanh_01/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss1/thuc_hanh_01/build/classes/java/main/vn/thanhhai/controller/StudentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ss1/thuc_hanh_01/build/classes/java/main/vn/thanhhai/controller/StudentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss1/thuc_hanh_01/build/classes/java/main/vn/thanhhai/model/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ss1/thuc_hanh_01/build/classes/java/main/vn/thanhhai/model/Student.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss1/thuc_hanh_01/build/classes/java/main/vn/thanhhai/repository/IStudentRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss1/thuc_hanh_01/build/classes/java/main/vn/thanhhai/repository/StudentRepo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss1/thuc_hanh_01/build/classes/java/main/vn/thanhhai/service/IStudentService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss1/thuc_hanh_01/build/classes/java/main/vn/thanhhai/service/StudentService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss1/thuc_hanh_01/build/libs/thuc_hanh_01-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/../ss1/thuc_hanh_01/build/libs/thuc_hanh_01-1.0-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss1/thuc_hanh_01/src/main/java/vn/thanhhai/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ss1/thuc_hanh_01/src/main/java/vn/thanhhai/controller/StudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss1/thuc_hanh_01/src/main/java/vn/thanhhai/model/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ss1/thuc_hanh_01/src/main/java/vn/thanhhai/model/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss1/thuc_hanh_01/src/main/java/vn/thanhhai/repository/IStudentRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss1/thuc_hanh_01/src/main/java/vn/thanhhai/repository/StudentRepo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss1/thuc_hanh_01/src/main/java/vn/thanhhai/service/IStudentService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss1/thuc_hanh_01/src/main/java/vn/thanhhai/service/StudentService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss1/thuc_hanh_01/src/main/webapp/WEB-INF/views/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../ss1/thuc_hanh_01/src/main/webapp/WEB-INF/views/detail.jsp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2GF1e2GORhLBtxFRANWX4yuhltm" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d2c4c675-b202-4cb9-b5ef-246e8ceac900" name="Default Changelist" comment="" />
+      <created>1665969609984</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1665969609984</updated>
+      <workItem from="1665969611984" duration="130000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+</project>

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 public interface ICalcRepo {
 
-    double cong(double a, double b, String tinh);
+    double tinh(double a, double b, String tinh);
 
 
 }

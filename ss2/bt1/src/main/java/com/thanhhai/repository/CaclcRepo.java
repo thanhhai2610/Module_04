@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 public class CaclcRepo implements ICalcRepo {
 
     @Override
-    public double cong (double a, double b, String tinh) {
+    public double tinh(double a, double b, String tinh) {
 
         if (tinh.equals("cong")) {
             return a + b;
