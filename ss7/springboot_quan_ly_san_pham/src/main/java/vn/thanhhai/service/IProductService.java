@@ -7,15 +7,15 @@ import java.util.Optional;
 
 public interface IProductService {
 
-    Optional<Product> findById(int id);
+    Product findById(int id);
 
     List<Product>  findAll();
 
-//    List<Product> findByName(String name);
+    List<Product> findByName(String name);
 
     Product save(Product product);
 
-//    void update(int id, Product product);
+    void update(int id, Product product);
 
     void delete(Product product);
 }

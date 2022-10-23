@@ -16,8 +16,8 @@ public class ProductService implements IProductService {
 
 
     @Override
-    public Optional<Product> findById(int id) {
-        return productRepo.findById(id);
+    public Product findById(int id) {
+        return productRepo.findById(id).orElse(null);
     }
 
     @Override
@@ -25,20 +25,20 @@ public class ProductService implements IProductService {
         return productRepo.findAll();
     }
 
-//    @Override
-//    public List<Product> findByName(String name) {
-//        return productRepo.findByName(name);
-//    }
+    @Override
+    public List<Product> findByName(String name) {
+        return productRepo.findByName(name);
+    }
 
     @Override
     public Product save(Product product) {
          return productRepo.save(product);
     }
 
-//    @Override
-//    public void update(int id, Product product) {
-//        productRepo.(product);
-//    }
+    @Override
+    public void update(int id, Product product) {
+        productRepo.save(product);
+    }
 
     @Override
     public void delete(Product product) {

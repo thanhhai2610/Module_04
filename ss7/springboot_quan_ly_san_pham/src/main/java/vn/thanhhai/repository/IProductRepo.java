@@ -6,5 +6,5 @@ import vn.thanhhai.model.Product;
 import java.util.List;
 
 public interface IProductRepo extends JpaRepository<Product, Integer> {
-
+    List<Product> findByName(String keyword);
 }

@@ -51,17 +51,17 @@ public class ProductController {
         return "/edit";
     }
 
-//    @PostMapping("/update")
-//    public String update(Product product) {
-//        productService.update(product.getId(), product);
-//        return "redirect:/product/";
-//    }
-//
-//    @GetMapping("/search")
-//    public String search(@RequestParam String search, Model model) {
-//        model.addAttribute("products", productService.findByName(search));
-//        return "/list";
-//    }
+    @PostMapping("/update")
+    public String update(Product product) {
+        productService.update(product.getId(), product);
+        return "redirect:/product/";
+    }
+
+    @GetMapping("/search")
+    public String search(@RequestParam String search, Model model) {
+        model.addAttribute("products", productService.findByName(search));
+        return "/list";
+    }
 
     @GetMapping("/{id}/delete")
     public String delete(Product product) {
