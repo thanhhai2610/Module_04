@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h3>Customers</h3>
+<p>
+    <a th:href="@{/User/create}">
+        Add new customer
+    </a>
+</p><p>
+    <a th:href="@{/User}">
+       Home
+    </a>
+</p>
+
+<form action="/User/search">
+    <input type="text" name="search">
+    <input type="submit" value="Search">
+</form>
+<p th:text="${success}"></p>
+
+<table id="customers">
+    <thead>
+    <tr>
+        <th>Ten</th>
+        <th>Ngay sinh</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Trinh do</th>
+        <th>Vi tri</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="data : ${userList}">
+        <td th:text="${data.getHoTen()}"></td>
+        <td th:text="${data.getNgaySinh()}"></td>
+        <td th:text="${data.getPhone()}"></td>
+        <td th:text="${data.getEmail()}"></td>
+        <td th:text="${data.getDegreeLink().degreeName}"></td>
+        <td th:text="${data.getPositionLink().positionName}"></td>
+        <td><a th:href="@{/employee/{id}/update(id=${data.getId()})}">edit</a></td>
+        <td><a th:href="@{/employee/{id}/delete(id=${data.getId()})}">delete</a></td>
+        <td><a th:href="@{/employee/{id}/view(id=${data.getId()})}">view</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<footer th:replace="/layout :: footer"></footer>
+
+
+</body>
+</html>

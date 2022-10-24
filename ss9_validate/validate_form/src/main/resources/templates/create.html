@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<p>
+    <a th:href="@{/User}">
+        Back to customer list
+    </a>
+</p>
+
+<div id="form">
+    <form th:object="${userDto}"
+          th:action="@{/user/save}"
+          method="post" novalidate="novalidate">
+        <!--        <input type="hidden" th:field="*{id}">-->
+        <div>
+            <label>Họ và tên:</label>
+            <input type="text" th:field="*{username}"/>
+            <p style="color: red"  th:if="${#fields.hasErrors('username')}" th:errors="*{username}" ></p>
+        </div>
+        <div>
+            <label>Phone</label>
+            <input type="text" th:field="*{phone}"/>
+            <p style="color: red"  th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" ></p>
+
+        </div>
+        <div>
+            <label>Age</label>
+            <input type="text" th:field="*{age}"/>
+            <p style="color: red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}" ></p>
+
+        </div>
+        <div>
+            <label>Email</label>
+            <input type="text" th:field="*{email}"/>
+            <p style="color: red"  th:if="${#fields.hasErrors('email')}" th:errors="*{email}" ></p>
+
+        </div>
+
+        <input type="submit" value="Save"/>
+
+    </form>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
