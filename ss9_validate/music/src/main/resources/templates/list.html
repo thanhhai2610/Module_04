@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h3>Customers</h3>
+<p>
+    <a th:href="@{/infor/create}">
+        Add new customer
+    </a>
+</p><p>
+    <a th:href="@{/infor}">
+       Home
+    </a>
+</p>
+
+<form action="/User/search">
+    <input type="text" name="search">
+    <input type="submit" value="Search">
+</form>
+<p th:text="${success}"></p>
+
+<table id="customers">
+    <thead>
+    <tr>
+        <th>Tên</th>
+        <th>Tên nghệ sĩ</th>
+        <th>Thể loại</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="data : ${list}">
+        <td th:text="${data.getName()}"></td>
+        <td th:text="${data.getArtist()}"></td>
+        <td th:text="${data.getKindOfMusic()}"></td>
+        <td><a th:href="@{/employee/{id}/update(id=${data.getId()})}">edit</a></td>
+        <td><a th:href="@{/employee/{id}/delete(id=${data.getId()})}">delete</a></td>
+        <td><a th:href="@{/employee/{id}/view(id=${data.getId()})}">view</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<footer th:replace="/layout :: footer"></footer>
+
+
+</body>
+</html>
