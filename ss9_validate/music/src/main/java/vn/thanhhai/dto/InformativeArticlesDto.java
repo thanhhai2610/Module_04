@@ -6,18 +6,18 @@ import org.springframework.validation.Validator;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+
 public class InformativeArticlesDto implements Validator {
 
+    private int id;
+
     @NotEmpty(message = "Ban can nhap gi do")
-    @Size(max = 800)
     private String name;
 
     @NotEmpty(message = "Ban can nhap gi do")
-    @Size(max = 300)
     private String artist;
 
     @NotEmpty(message = "Ban can nhap gi do")
-    @Size(max = 1000)
     private String kindOfMusic;
 
 
@@ -30,19 +30,20 @@ public class InformativeArticlesDto implements Validator {
     public void validate(Object target, Errors errors) {
 
         InformativeArticlesDto informativeArticlesDto = (InformativeArticlesDto) target;
+
         if (!informativeArticlesDto.name.matches("^[A-Za-zàáãạảăắằẳẵặâấầẩẫậèéẹẻẽêềếểễệđìíĩỉịòóõọỏôốồổỗộơớờởỡợùúũụ" +
                 "ủưứừửữựỳỵỷỹýÀÁÃẠẢĂẮẰẲẴẶÂẤẦẨẪẬÈÉẸẺẼÊỀẾỂỄỆĐÌÍĨỈỊÒÓÕỌỎÔỐỒỔỖỘƠỚỜỞỠỢÙÚŨỤỦƯỨỪỬỮỰỲỴỶỸÝ ]{3,800}$")
                 && !informativeArticlesDto.name.equals("")) {
             errors.rejectValue("name", "name", "Ban nhap ten bai hat chua dung dinh dang");
         }
         if (!informativeArticlesDto.artist.matches("^[A-Za-zàáãạảăắằẳẵặâấầẩẫậèéẹẻẽêềếểễệđìíĩỉịòóõọỏôốồổỗộơớờởỡợùúũụ" +
-                "ủưứừửữựỳỵỷỹýÀÁÃẠẢĂẮẰẲẴẶÂẤẦẨẪẬÈÉẸẺẼÊỀẾỂỄỆĐÌÍĨỈỊÒÓÕỌỎÔỐỒỔỖỘƠỚỜỞỠỢÙÚŨỤỦƯỨỪỬỮỰỲỴỶỸÝ ]{3,800}$")
-                ) {
+                "ủưứừửữựỳỵỷỹýÀÁÃẠẢĂẮẰẲẴẶÂẤẦẨẪẬÈÉẸẺẼÊỀẾỂỄỆĐÌÍĨỈỊÒÓÕỌỎÔỐỒỔỖỘƠỚỜỞỠỢÙÚŨỤỦƯỨỪỬỮỰỲỴỶỸÝ ]{3,300}$")
+                && !informativeArticlesDto.name.equals("")) {
             errors.rejectValue("artist", "artist", "Ban nhap ten nghe si chua dung dinh dang");
         }
         if (!informativeArticlesDto.kindOfMusic.matches("^[A-Za-zàáãạảăắằẳẵặâấầẩẫậèéẹẻẽêềếểễệđìíĩỉịòóõọỏôốồổỗộơớờởỡợùúũụ" +
-                "ủưứừửữựỳỵỷỹýÀÁÃẠẢĂẮẰẲẴẶÂẤẦẨẪẬÈÉẸẺẼÊỀẾỂỄỆĐÌÍĨỈỊÒÓÕỌỎÔỐỒỔỖỘƠỚỜỞỠỢÙÚŨỤỦƯỨỪỬỮỰỲỴỶỸÝ ]{3,800}$")
-                && !informativeArticlesDto.kindOfMusic.equals(",")) {
+                "ủưứừửữựỳỵỷỹýÀÁÃẠẢĂẮẰẲẴẶÂẤẦẨẪẬÈÉẸẺẼÊỀẾỂỄỆĐÌÍĨỈỊÒÓÕỌỎÔỐỒỔỖỘƠỚỜỞỠỢÙÚŨỤỦƯỨỪỬỮỰỲỴỶỸÝ, ]{3,1000}$")
+                && !informativeArticlesDto.name.equals("")) {
             errors.rejectValue("kindOfMusic", "kindOfMusic", "Ban nhap loai nhac chua dung dinh dang");
         }
     }
@@ -50,10 +51,19 @@ public class InformativeArticlesDto implements Validator {
     public InformativeArticlesDto() {
     }
 
-    public InformativeArticlesDto(@NotEmpty(message = "Ban can nhap gi do") @Size(max = 800) String name, @NotEmpty(message = "Ban can nhap gi do") @Size(max = 300) String artist, @NotEmpty(message = "Ban can nhap gi do") @Size(max = 1000) String kindOfMusic) {
+    public InformativeArticlesDto(int id, @NotEmpty(message = "Ban can nhap gi do") String name, @NotEmpty(message = "Ban can nhap gi do") String artist, @NotEmpty(message = "Ban can nhap gi do") String kindOfMusic) {
+        this.id = id;
         this.name = name;
         this.artist = artist;
         this.kindOfMusic = kindOfMusic;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

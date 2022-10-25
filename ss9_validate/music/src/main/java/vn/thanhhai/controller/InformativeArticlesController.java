@@ -41,7 +41,8 @@ public class InformativeArticlesController {
     public String save(@Validated @ModelAttribute InformativeArticlesDto informativeArticlesDto,
                        BindingResult bindingResult) {
         new InformativeArticlesDto().validate(informativeArticlesDto, bindingResult);
-        if (bindingResult.hasErrors()) {
+
+        if (bindingResult.hasFieldErrors()) {
             return "create";
         } else {
             InformativeArticles informativeArticles = new InformativeArticles();
@@ -50,7 +51,27 @@ public class InformativeArticlesController {
             informativeArticlesService.save(informativeArticles);
             return "redirect:/infor";
         }
+    }
+    @GetMapping("/{id}/update")
+    public String update(@PathVariable int id, Model model) {
+        InformativeArticles informativeArticles = informativeArticlesService.findById(id);
+        model.addAttribute("informativeArticles",informativeArticles);
+        return "edit";
+    }
+    @PostMapping("/update")
+    public String update(@Validated @ModelAttribute("informativeArticles") InformativeArticlesDto informativeArticlesDto,
+                       BindingResult bindingResult) {
+        new InformativeArticlesDto().validate(informativeArticlesDto, bindingResult);
 
+        if (bindingResult.hasFieldErrors()) {
+            return "edit";
+        } else {
+            InformativeArticles informativeArticles = new InformativeArticles();
+            BeanUtils.copyProperties(informativeArticlesDto, informativeArticles);
+
+            informativeArticlesService.save(informativeArticles);
+            return "redirect:/infor";
+        }
     }
 
 }

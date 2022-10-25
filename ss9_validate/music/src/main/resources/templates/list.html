@@ -36,9 +36,9 @@
         <td th:text="${data.getName()}"></td>
         <td th:text="${data.getArtist()}"></td>
         <td th:text="${data.getKindOfMusic()}"></td>
-        <td><a th:href="@{/employee/{id}/update(id=${data.getId()})}">edit</a></td>
-        <td><a th:href="@{/employee/{id}/delete(id=${data.getId()})}">delete</a></td>
-        <td><a th:href="@{/employee/{id}/view(id=${data.getId()})}">view</a></td>
+        <td><a th:href="@{/infor/{id}/update(id=${data.getId()})}">edit</a></td>
+        <td><a th:href="@{/infor/{id}/delete(id=${data.getId()})}">delete</a></td>
+        <td><a th:href="@{/infor/{id}/view(id=${data.getId()})}">view</a></td>
     </tr>
     </tbody>
 </table>
