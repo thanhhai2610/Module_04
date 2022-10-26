@@ -10,6 +10,11 @@ public interface IOderService {
 
     Oder findById(int id);
 
+    Oder findByCode(int keyword);
+
     void save(Oder oder);
+
+    void delete(Oder oder);
+
 
 }

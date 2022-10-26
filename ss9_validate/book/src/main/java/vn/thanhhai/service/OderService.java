@@ -23,7 +23,17 @@ public class OderService implements IOderService {
     }
 
     @Override
+    public Oder findByCode(int keyword) {
+        return oderRepo.findByCode(keyword);
+    }
+
+    @Override
     public void save(Oder oder) {
         oderRepo.save(oder);
+    }
+
+    @Override
+    public void delete(Oder oder) {
+        oderRepo.delete(oder);
     }
 }

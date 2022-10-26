@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h3>Customers</h3>
+<p>
+    <a th:href="@{/infor/create}">
+        Order List
+    </a>
+</p>
+<p>
+    <a th:href="@{/book}">
+        Home
+    </a>
+</p>
+
+<p th:text="${success}"></p>
+
+<table id="customers">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Mã Code</th>
+        <th>Ngày Order</th>
+        <th>Pay</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="data,dataStart : ${oderList}">
+        <td th:text="${dataStart.count}"></td>
+        <td th:text="${data.getCode()}"></td>
+        <td th:text="${data.getDate()}"></td>
+        <td><a th:href="@{/book/{id}/payBook(id=${data.getBookOder().getId()})}">Pay</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<footer th:replace="/layout :: footer"></footer>
+
+
+</body>
+</html>

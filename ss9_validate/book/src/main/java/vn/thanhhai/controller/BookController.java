@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import vn.thanhhai.model.Book;
 import vn.thanhhai.model.Oder;
 import vn.thanhhai.service.BookService;
@@ -30,11 +31,11 @@ public class BookController {
         return "list";
     }
 
+
     @GetMapping("/{id}/view")
     public String view(@PathVariable int id, Model model) {
         model.addAttribute("bookList", bookService.findById(id));
         return "/view";
-
     }
 
     @GetMapping("/{id}/oder")
@@ -61,8 +62,39 @@ public class BookController {
 
         bookService.save(book);
         oderService.save(oder);
-        List<Book> bookList = bookService.findAll();
-        model.addAttribute("bookList", bookList);
+//        List<Book> bookList = bookService.findAll();
+//        model.addAttribute("bookList", bookList);
+        return "redirect:/book/";
+    }
+
+    @GetMapping("/orderList")
+    public String orderList(Model model) {
+        List<Oder> oderList = oderService.findAll();
+        model.addAttribute("oderList", oderList);
+        return "orderList";
+    }
+
+    @GetMapping("/{id}/payBook")
+    public String payBookConfirm(@PathVariable int id, Model model) {
+        model.addAttribute("book", bookService.findById(id));
+        return "/confirmPay";
+    }
+
+    @PostMapping("/payBook")
+    public String payBook(@RequestParam int code,
+                          RedirectAttributes redirectAttributes) {
+        Oder oder = oderService.findByCode(code);
+        if (oder == null) {
+            redirectAttributes.addFlashAttribute("success", "Code Lỗi");
+        } else {
+            oderService.delete(oder);
+
+            Book book = oder.getBookOder();
+            book.setCount(book.getCount() + 1);
+            bookService.save(book);
+            redirectAttributes.addFlashAttribute("success", "oke");
+
+        }
         return "redirect:/book/";
     }
 
