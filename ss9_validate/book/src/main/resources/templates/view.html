@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+<body>
+<h3>View</h3>
+<p>
+    <a th:href="@{/book}">
+        Back to customer list
+    </a>
+</p>
+<div id="detail">
+    <div class="cusdetail">
+        <label>Name:</label>
+        <label th:text="${bookList.name}"></label>
+    </div>
+    <div class="cusdetail">
+        <label>Price:</label>
+        <label th:text="${bookList.count}"></label>
+    </div>
+<!--    <div class="cusdetail">-->
+<!--        <label>Manufacturer:</label>-->
+<!--        <label th:text="${bookList.getOders()}"></label>-->
+<!--    </div>-->
+    <div class="cusdetail"><a th:href="@{/book/{id}/oder(id=${bookList.getId()})}">Oder</a></div>
+
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

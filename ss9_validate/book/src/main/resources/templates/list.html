@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h3>Customers</h3>
+<p>
+    <a th:href="@{/infor/create}">
+        Add new customer
+    </a>
+</p>
+<p>
+    <a th:href="@{/infor}">
+        Home
+    </a>
+</p>
+
+<form action="/User/search">
+    <input type="text" code="search">
+    <input type="submit" value="Search">
+</form>
+<p th:text="${success}"></p>
+
+<table id="customers">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Tên sách</th>
+        <th>Số lượng</th>
+        <th>Oder</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="data,dataStart : ${bookList}">
+        <td th:text="${dataStart.count}"></td>
+        <td th:text="${data.getName()}"></td>
+        <td th:text="${data.getCount()}"></td>
+        <td><a th:href="@{/book/{id}/view(id=${data.getId()})}">view</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<footer th:replace="/layout :: footer"></footer>
+
+
+</body>
+</html>
