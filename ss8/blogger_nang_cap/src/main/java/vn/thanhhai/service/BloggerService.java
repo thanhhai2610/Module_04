@@ -10,6 +10,7 @@ import vn.thanhhai.repository.IBloggerRepo;
 
 import java.util.List;
 
+
 @Service
 public class BloggerService implements IBloggerService {
 
@@ -19,6 +20,11 @@ public class BloggerService implements IBloggerService {
     @Override
     public Page<Bloger> findAll(Pageable pageable) {
         return bloggerRepo.findAll(pageable);
+    }
+
+    @Override
+    public List<Bloger> findAll() {
+        return bloggerRepo.findAll();
     }
 
     @Override
@@ -34,5 +40,10 @@ public class BloggerService implements IBloggerService {
     @Override
     public void remove(Bloger bloger) {
         bloggerRepo.delete(bloger);
+    }
+
+    @Override
+    public List<Bloger> getListByCategoryId(int id) {
+        return bloggerRepo.findByCategoryId(id);
     }
 }

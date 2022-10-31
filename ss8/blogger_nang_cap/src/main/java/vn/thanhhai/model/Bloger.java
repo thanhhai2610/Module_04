@@ -1,5 +1,8 @@
 package vn.thanhhai.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,7 +15,11 @@ public class Bloger {
     private String content;
     private String image;
 
-
+    @ManyToOne
+    @JsonBackReference
+    @JsonIgnore
+    @JoinColumn(name = "category_id", referencedColumnName = "idCategory")
+    private Category category1;
 
     public Bloger() {
     }
@@ -23,10 +30,6 @@ public class Bloger {
         this.content = content;
         this.image = image;
     }
-
-    @ManyToOne
-    @JoinColumn(name = "category_id", referencedColumnName = "idCategory")
-    private Category category1;
 
 
     public String getName() {

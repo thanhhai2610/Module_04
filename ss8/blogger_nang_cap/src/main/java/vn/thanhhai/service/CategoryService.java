@@ -20,7 +20,7 @@ public class CategoryService implements ICategoryService {
 
     @Override
     public void save(Category category) {
-
+        categoryReppo.save(category);
     }
 
     @Override
