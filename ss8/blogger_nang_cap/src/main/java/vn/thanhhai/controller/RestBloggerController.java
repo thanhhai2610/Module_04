@@ -13,6 +13,7 @@ import vn.thanhhai.model.Category;
 import vn.thanhhai.service.IBloggerService;
 import vn.thanhhai.service.ICategoryService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -25,12 +26,20 @@ public class RestBloggerController {
 
     /*Lay tai nguyen*/
     @GetMapping("")
-    public ResponseEntity<Page<Bloger>> getBloggerList(Pageable pageable) {
-        Page<Bloger> bloggerList = bloggerService.findAll(pageable);
+    public ResponseEntity<List<BlogerDto>> getBloggerList() {
+        List<Bloger> bloggerList = bloggerService.findAll();
+
         if (bloggerList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(bloggerList, HttpStatus.OK);
+        List<BlogerDto> blogerDtoList = new ArrayList<>();
+        for (Bloger x : bloggerList) {
+            BlogerDto blogerDto = new BlogerDto();
+            BeanUtils.copyProperties(x, blogerDto);
+            blogerDto.setCategoryId(x.getCategory1().getIdCategory());
+            blogerDtoList.add(blogerDto);
+        }
+        return new ResponseEntity<>(blogerDtoList, HttpStatus.OK);
     }
 
 

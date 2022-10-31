@@ -5,19 +5,29 @@ public class BlogerDto {
     private String name;
     private String content;
     private String image;
+    private int categoryId;
 
     public BlogerDto() {
     }
 
-    public BlogerDto(int idBlog, String name, String content, String image) {
+    public BlogerDto(int idBlog, String name, String content, String image, int categoryId) {
         this.idBlog = idBlog;
         this.name = name;
         this.content = content;
         this.image = image;
+        this.categoryId = categoryId;
     }
 
     public int getIdBlog() {
         return idBlog;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     public void setIdBlog(int idBlog) {
