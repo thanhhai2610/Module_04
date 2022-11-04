@@ -1,9 +1,9 @@
 package vn.thanhhai.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import vn.thanhhai.model.User;
+import vn.thanhhai.model.AppUser;
 
-public interface UsesRepo extends JpaRepository<User, Integer> {
+public interface UsesRepo extends JpaRepository<AppUser, Integer> {
 
-    User findByUsername(String username);
+    AppUser findByUsername(String username);
 }

@@ -15,7 +15,7 @@ public class BlogerDto {
         this.name = name;
         this.content = content;
         this.image = image;
-//        this.categoryId = categoryId;
+        this.categoryId = categoryId;
     }
 
     public int getIdBlog() {

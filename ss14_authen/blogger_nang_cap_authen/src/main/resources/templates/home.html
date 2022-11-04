@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://ww.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div sec:authorize="isAuthenticated()">
+    <p>hello</p>
+    <div sec:autorize="hasRole('admin')">
+        <h1>cái này của admin</h1>
+    </div>
+    <div sec:autorize="hasRole('users')">
+        <h1>cái này của users</h1>
+    </div>
+
+</div>
+
+</body>
+</html>
