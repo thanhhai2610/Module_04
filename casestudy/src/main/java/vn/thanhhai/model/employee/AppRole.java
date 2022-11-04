@@ -7,25 +7,25 @@ import java.util.Set;
 
 @Entity
 @Table
-public class Role {
+public class AppRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String roleName;
 
-    @ManyToMany(mappedBy = "role")
-    private Set<MyUser> myUser;
+    @ManyToMany(mappedBy = "appRole")
+    private Set<AppUser> appUser;
 
     @Value("1")
     private int isDelete;
 
-    public Role() {
+    public AppRole() {
     }
 
-    public Role(int id, String roleName, Set<MyUser> myUser, int isDelete) {
+    public AppRole(int id, String roleName, Set<AppUser> appUser, int isDelete) {
         this.id = id;
         this.roleName = roleName;
-        this.myUser = myUser;
+        this.appUser = appUser;
         this.isDelete = isDelete;
     }
 
@@ -45,12 +45,12 @@ public class Role {
         this.roleName = roleName;
     }
 
-    public Set<MyUser> getMyUser() {
-        return myUser;
+    public Set<AppUser> getAppUser() {
+        return appUser;
     }
 
-    public void setMyUser(Set<MyUser> myUser) {
-        this.myUser = myUser;
+    public void setAppUser(Set<AppUser> appUser) {
+        this.appUser = appUser;
     }
 
     public int getIsDelete() {

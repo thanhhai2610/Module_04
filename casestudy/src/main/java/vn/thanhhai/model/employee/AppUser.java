@@ -1,40 +1,39 @@
 package vn.thanhhai.model.employee;
 
 import org.springframework.beans.factory.annotation.Value;
-import vn.thanhhai.model.employee.Employee;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table
-public class MyUser {
+public class AppUser {
 
     @Id
     private String userName;
 
     private String password;
 
-    @OneToOne(mappedBy = "myUser")
+    @OneToOne(mappedBy = "appUser")
     private Employee employee;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id "))
-    private List<Role> role;
+    private List<AppRole> appRole;
 
     @Value("1")
     private int isDelete;
 
-    public MyUser() {
+    public AppUser() {
     }
 
-    public MyUser(String userName, String password , Employee employee, List<Role> role, int isDelete) {
+    public AppUser(String userName, String password , Employee employee, List<AppRole> appRole, int isDelete) {
         this.userName = userName;
         this.password = password;
         this.employee = employee;
-        this.role = role;
+        this.appRole = appRole;
         this.isDelete = isDelete;
     }
 
@@ -62,12 +61,12 @@ public class MyUser {
         this.employee = employee;
     }
 
-    public List<Role> getRole() {
-        return role;
+    public List<AppRole> getAppRole() {
+        return appRole;
     }
 
-    public void setRole(List<Role> role) {
-        this.role = role;
+    public void setAppRole(List<AppRole> appRole) {
+        this.appRole = appRole;
     }
 
     public int getIsDelete() {

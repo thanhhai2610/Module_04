@@ -13,7 +13,9 @@ public class CustomerType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @OneToMany(mappedBy = "customerType",cascade = CascadeType.ALL)
+
+
+    @OneToMany(mappedBy = "customerType")
     private Set<Customer>  customer;
 
     @Value("1")

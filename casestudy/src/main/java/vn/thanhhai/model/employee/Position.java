@@ -13,7 +13,7 @@ public class Position {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @OneToMany(mappedBy = "position",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "position")
     private Set<Employee> employee;
 
     @Value("1")

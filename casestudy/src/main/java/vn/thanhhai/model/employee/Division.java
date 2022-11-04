@@ -13,7 +13,7 @@ public class Division {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @OneToMany(mappedBy = "division", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "division" )
     private Set<Employee> employee;
     @Value("1")
     private int isDelete;

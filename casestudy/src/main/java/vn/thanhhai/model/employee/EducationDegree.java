@@ -13,7 +13,7 @@ public class EducationDegree {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @OneToMany(mappedBy = "educationDegree",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "educationDegree")
     private Set<Employee> employee;
     @Value("1")
     private int isDelete;

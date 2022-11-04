@@ -1,8 +1,10 @@
 package vn.thanhhai.model.customer;
 
 import org.springframework.beans.factory.annotation.Value;
+import vn.thanhhai.model.contract.Contract;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table
@@ -23,13 +25,16 @@ public class Customer {
     private String email;
     private String address;
 
+    @OneToMany(mappedBy = "customer")
+    private Set<Contract> contract;
+
     @Value("1")
     private int isDelete;
 
     public Customer() {
     }
 
-    public Customer(int id, CustomerType customerType, String name, String dateOfBirth, int gender, String idCard, String phoneNumber, String email, String address) {
+    public Customer(int id, CustomerType customerType, String name, String dateOfBirth, int gender, String idCard, String phoneNumber, String email, String address, Set<Contract> contract, int isDelete) {
         this.id = id;
         this.customerType = customerType;
         this.name = name;
@@ -39,6 +44,8 @@ public class Customer {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
+        this.contract = contract;
+        this.isDelete = isDelete;
     }
 
     public int getId() {
@@ -111,6 +118,14 @@ public class Customer {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Set<Contract> getContract() {
+        return contract;
+    }
+
+    public void setContract(Set<Contract> contract) {
+        this.contract = contract;
     }
 
     public int getIsDelete() {

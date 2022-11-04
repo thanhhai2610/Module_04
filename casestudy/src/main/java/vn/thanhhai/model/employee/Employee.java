@@ -1,8 +1,10 @@
 package vn.thanhhai.model.employee;
 
 import org.springframework.beans.factory.annotation.Value;
+import vn.thanhhai.model.contract.Contract;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table
@@ -32,7 +34,11 @@ public class Employee {
 
     @OneToOne
     @JoinColumn(name = "userName", referencedColumnName = "userName")
-    private MyUser myUser;
+    private AppUser appUser;
+
+
+    @OneToMany(mappedBy = "employee")
+    private Set<Contract> contract;
 
     @Value("1")
     private int isDelete;
@@ -41,7 +47,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(int id, String name, String dateOfBirth, String idCard, double salary, String phoneNumber, String email, String address, Position position, EducationDegree educationDegree, Division division, MyUser myUser) {
+    public Employee(int id, String name, String dateOfBirth, String idCard, double salary, String phoneNumber, String email, String address, Position position, EducationDegree educationDegree, Division division, AppUser appUser, Set<Contract> contract, int isDelete) {
         this.id = id;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
@@ -53,7 +59,9 @@ public class Employee {
         this.position = position;
         this.educationDegree = educationDegree;
         this.division = division;
-        this.myUser = myUser;
+        this.appUser = appUser;
+        this.contract = contract;
+        this.isDelete = isDelete;
     }
 
     public int getId() {
@@ -144,12 +152,20 @@ public class Employee {
         this.division = division;
     }
 
-    public MyUser getMyUser() {
-        return myUser;
+    public AppUser getAppUser() {
+        return appUser;
     }
 
-    public void setMyUser(MyUser myUser) {
-        this.myUser = myUser;
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
+    }
+
+    public Set<Contract> getContract() {
+        return contract;
+    }
+
+    public void setContract(Set<Contract> contract) {
+        this.contract = contract;
     }
 
     public int getIsDelete() {
