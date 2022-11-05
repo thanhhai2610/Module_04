@@ -19,4 +19,14 @@ public class CustomerService implements ICustomerService {
         return customerRepo.myFindAll(pageable);
     }
 
+    @Override
+    public void saveCustomer(Customer customer) {
+        customerRepo.save(customer);
+    }
+
+    @Override
+    public Page<Customer> search(String name, String address, int gender, Pageable pageable) {
+        return customerRepo.search(name, address, gender,pageable);
+    }
+
 }

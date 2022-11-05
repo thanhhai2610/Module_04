@@ -28,8 +28,8 @@ public class Customer {
     @OneToMany(mappedBy = "customer")
     private Set<Contract> contract;
 
-    @Value("1")
-    private int isDelete;
+    @Column(name="isDelete")
+    private int isDelete = 1;
 
     public Customer() {
     }

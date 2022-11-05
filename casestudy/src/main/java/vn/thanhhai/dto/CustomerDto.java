@@ -1,6 +1,7 @@
 package vn.thanhhai.dto;
 
 
+import vn.thanhhai.model.customer.CustomerType;
 
 public class CustomerDto {
 
@@ -20,12 +21,12 @@ public class CustomerDto {
 
     private String address;
 
-    private  String nameCustomerType;
+    private CustomerType customerType;
 
     public CustomerDto() {
     }
 
-    public CustomerDto(int id, String name, String dateOfBirth, int gender, String idCard, String phoneNumber, String email, String address, String nameCustomerType) {
+    public CustomerDto(int id, String name, String dateOfBirth, int gender, String idCard, String phoneNumber, String email, String address, CustomerType customerType) {
         this.id = id;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
@@ -34,7 +35,7 @@ public class CustomerDto {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
-        this.nameCustomerType = nameCustomerType;
+        this.customerType = customerType;
     }
 
     public int getId() {
@@ -101,11 +102,11 @@ public class CustomerDto {
         this.address = address;
     }
 
-    public String getNameCustomerType() {
-        return nameCustomerType;
+    public CustomerType getCustomerType() {
+        return customerType;
     }
 
-    public void setNameCustomerType(String nameCustomerType) {
-        this.nameCustomerType = nameCustomerType;
+    public void setCustomerType(CustomerType customerType) {
+        this.customerType = customerType;
     }
 }
