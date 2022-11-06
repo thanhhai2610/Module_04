@@ -41,6 +41,10 @@ public interface ICustomerRepo extends JpaRepository<Customer, Integer> {
                       @Param("name") String name,
                       @Param("phone_number") String phoneNumber,
                       @Param("customer_type_id") int customerTypeId);
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE `case_study_m4`.`customer` SET `is_delete` = 0 WHERE (`id` = :id);\n", nativeQuery = true)
+    void removeById(@Param("id") int id);
 
 
 }

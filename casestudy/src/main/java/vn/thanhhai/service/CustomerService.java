@@ -26,7 +26,12 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public Page<Customer> search(String name, String address, int gender, Pageable pageable) {
-        return customerRepo.search(name, address, gender,pageable);
+        return customerRepo.search(name, address, gender, pageable);
+    }
+
+    @Override
+    public void removeById(int id) {
+        customerRepo.removeById(id);
     }
 
 }

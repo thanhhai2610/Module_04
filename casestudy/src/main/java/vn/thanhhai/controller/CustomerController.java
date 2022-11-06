@@ -60,7 +60,6 @@ public class CustomerController {
                                BindingResult bindingResult,
                                RedirectAttributes redirect) {
         if (!bindingResult.hasErrors()) {
-
             Customer customer = new Customer();
             BeanUtils.copyProperties(customerDto, customer);
             customerService.saveCustomer(customer);
@@ -80,7 +79,7 @@ public class CustomerController {
                          Model model,
                          RedirectAttributes redirectAttributes) {
 
-        Page<Customer> customerList = customerService.search(name, address, gender , pageable );
+        Page<Customer> customerList = customerService.search(name, address, gender, pageable);
         List<CustomerDto> customerDtoList = new ArrayList<>();
         CustomerDto customerDto = new CustomerDto();
         for (Customer customer : customerList) {
@@ -97,6 +96,29 @@ public class CustomerController {
         model.addAttribute("customerDto", customerDto);
         model.addAttribute("customerDtoListPage", customerDtoListPage);
         return "/customer/list";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String getCustomer(@ModelAttribute("customerDto") String customerDto,
+                              BindingResult bindingResult,
+                              RedirectAttributes redirect,
+                              Model model) {
+        if (!bindingResult.hasErrors()) {
+            Customer customer = new Customer();
+            BeanUtils.copyProperties(customerDto, customer);
+            customerService.saveCustomer(customer);
+
+            redirect.addFlashAttribute("message", "Customer created successfully");
+        } else {
+            redirect.addFlashAttribute("message", "Customer creation failed");
+        }
+        return "redirect:/customer/";
+    }
+
+    @GetMapping("/delete/{idDelete}")
+    public String deleteCustomer(@PathVariable("idDelete") int idDelete ) {
+        customerService.removeById(idDelete);
+        return "redirect:/customer/";
     }
 
 

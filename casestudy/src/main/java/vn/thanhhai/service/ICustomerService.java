@@ -20,7 +20,7 @@ public interface ICustomerService {
 
 //    void saveCustomer(Customer customer);
 //
-//    void deleteCustomer(Customer customer);
+    void removeById(int id);
 //
 //    void updateCustomer(Customer customer);
 
