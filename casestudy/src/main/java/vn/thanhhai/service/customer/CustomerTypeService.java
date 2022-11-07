@@ -1,12 +1,9 @@
-package vn.thanhhai.service;
+package vn.thanhhai.service.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import vn.thanhhai.repository.ICustomerTypeRepo;
+import vn.thanhhai.repository.customer.ICustomerTypeRepo;
 import vn.thanhhai.model.customer.CustomerType;
-
-
-import java.util.List;
 
 @Service
 public class CustomerTypeService implements ICustomerTypeService{

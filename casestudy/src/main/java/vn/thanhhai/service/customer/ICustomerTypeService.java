@@ -1,4 +1,4 @@
-package vn.thanhhai.service;
+package vn.thanhhai.service.customer;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

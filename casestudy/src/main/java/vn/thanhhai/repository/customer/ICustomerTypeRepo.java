@@ -1,4 +1,4 @@
-package vn.thanhhai.repository;
+package vn.thanhhai.repository.customer;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,8 +15,5 @@ public interface ICustomerTypeRepo extends JpaRepository<CustomerType, Integer> 
 
     @Query(value = "SELECT * FROM case_study_m4.customer_type WHERE is_delete=1 ", nativeQuery = true)
     List<CustomerType> myFindAllCustomerType();
-
-
-
 
 }

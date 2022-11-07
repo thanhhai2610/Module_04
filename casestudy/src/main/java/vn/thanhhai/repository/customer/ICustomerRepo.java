@@ -1,4 +1,4 @@
-package vn.thanhhai.repository;
+package vn.thanhhai.repository.customer;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,13 +17,15 @@ public interface ICustomerRepo extends JpaRepository<Customer, Integer> {
     @Query(value = "SELECT * FROM case_study_m4.customer WHERE is_delete=1 ", nativeQuery = true)
     Page<Customer> myFindAll(Pageable pageable);
 
-
-    @Query(value = "SELECT * FROM case_study_m4.customer " +
-            "WHERE is_delete=1 " +
-            "and name like %:name% " +
-            "AND address LIKE %:address% " +
-            "and gender = :gender", nativeQuery = true)
-    Page<Customer> search(@Param("name") String name, @Param("address") String address, @Param("gender") int gender, Pageable pageable);
+    @Query(value = "SELECT * FROM customer c" +
+            "    inner join customer_type ct on c.customer_type_id = ct.id" +
+            "    WHERE c.is_delete = 1" +
+            "    and c.name like %:name%" +
+            "    AND c.address LIKE %:address%" +
+            "    and ct.name like %:type% ", nativeQuery = true)
+    Page<Customer> search(@Param("name") String name,
+                          @Param("address") String address,
+                          @Param("type") String customerType, Pageable pageable);
 
 
     @Modifying
@@ -42,7 +44,7 @@ public interface ICustomerRepo extends JpaRepository<Customer, Integer> {
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE `case_study_m4`.`customer` SET `is_delete` = 0 WHERE (`id` = :id);\n", nativeQuery = true)
+    @Query(value = "UPDATE `case_study_m4`.`customer` SET `is_delete` = 0 WHERE (`id` = :id)", nativeQuery = true)
     void removeById(@Param("id") int id);
 
 

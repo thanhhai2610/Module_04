@@ -27,6 +27,7 @@ body {
     height: 70px;
     padding: 0;
     padding-left: 140px;
+    position: fixed;
 }
 
 .list {

@@ -1,4 +1,4 @@
-package vn.thanhhai.service;
+package vn.thanhhai.service.customer;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,7 +10,7 @@ public interface ICustomerService {
 
     void saveCustomer(Customer customer);
 
-    Page<Customer> search(String name, String address, int gender,Pageable pageable);
+    Page<Customer> search(String name, String address, String customerType,Pageable pageable);
 
 //    List<Customer> findAll();
 //

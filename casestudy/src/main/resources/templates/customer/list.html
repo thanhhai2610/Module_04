@@ -100,14 +100,21 @@
     Create Blog
 </button>
 
-<form action="/customer/search" method="get">
-    <input type="text" name="searchNname" placeholder="Search name">
-    <input type="text" name="searchAddress" placeholder="Search address">
-    <select name="searchGender">
-        <option value="1">Nam</option>
-        <option value="0">Nữ</option>
-        <option value="2">Khác</option>
+<form action="/customer" method="get">
+    <input type="text" name="searchName" th:value="${searchName}" placeholder="Search name">
+    <input type="text" name="searchAddress" th:value="${searchAddress}" placeholder="Search address">
+
+    <select name="searchCustomerTypeList" class="mx-3">
+        <option th:if="${searchCustomerTypeList}!=''"
+                th:value="${searchCustomerTypeList}"
+                th:text="${searchCustomerTypeList}"></option>
+        <option th:value="''"
+                th:text="'--All Type--'"></option>
+        <option th:each="customerTypeList: ${customerTypeList}"
+                th:value="${customerTypeList.name}"
+                th:text="${customerTypeList.name}"></option>
     </select>
+
     <input class="btn btn-secondary" type="submit" value="Search">
 </form>
 
@@ -342,7 +349,7 @@
 
     function showModalDeleteCustomer(id, name) {
         $('#nameDelete').text(name)
-        $('#confirmDelete').attr('href', 'customer/delete/' + id);
+        $('#confirmDelete').attr('href', '/customer/delete/' + id);
         $('#modalDelete').modal('show');
     }
 
@@ -350,17 +357,6 @@
         id, name,
         dateOfBirth, gender, idCard,
         phoneNumber, email, address, customerType) {
-
-        // document.getElementById('customer-id').value = id;
-        // document.getElementById('customer-name').value = name;
-        // document.getElementById('customer-dateOfBirth').value = dateOfBirth;
-        // document.getElementById('customer-gender').value = gender;
-        // document.getElementById('customer-idCard').value = idCard;
-        // document.getElementById('customer-phoneNumber').value = phoneNumber;
-        // document.getElementById('customer-email').value = email;
-        // document.getElementById('customer-address').value = address;
-        // document.getElementById('customer-customerType').value = customerType;
-
         $('#customer-id').val(id);
         $('#customer-name').val(name);
         $('#customer-dateOfBirth').val(dateOfBirth);
