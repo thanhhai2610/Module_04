@@ -8,10 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import vn.thanhhai.model.customer.Customer;
-import vn.thanhhai.model.customer.CustomerType;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Repository
 public interface ICustomerRepo extends JpaRepository<Customer, Integer> {
@@ -25,7 +23,7 @@ public interface ICustomerRepo extends JpaRepository<Customer, Integer> {
             "and name like %:name% " +
             "AND address LIKE %:address% " +
             "and gender = :gender", nativeQuery = true)
-    Page<Customer> search(@Param("name") String name, @Param("address") String address, @Param("gender") int gender,Pageable pageable);
+    Page<Customer> search(@Param("name") String name, @Param("address") String address, @Param("gender") int gender, Pageable pageable);
 
 
     @Modifying
@@ -41,6 +39,7 @@ public interface ICustomerRepo extends JpaRepository<Customer, Integer> {
                       @Param("name") String name,
                       @Param("phone_number") String phoneNumber,
                       @Param("customer_type_id") int customerTypeId);
+
     @Transactional
     @Modifying
     @Query(value = "UPDATE `case_study_m4`.`customer` SET `is_delete` = 0 WHERE (`id` = :id);\n", nativeQuery = true)

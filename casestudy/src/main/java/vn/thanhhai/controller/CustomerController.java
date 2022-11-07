@@ -35,26 +35,31 @@ public class CustomerController {
     public String showCustomerList(@PageableDefault(value = 10) Pageable pageable, Model model) {
         Page<Customer> customerPage = customerService.myFindAll(pageable);
         List<CustomerDto> customerDtoList = new ArrayList<>();
-        CustomerDto customerDto = new CustomerDto();
+        CustomerDto customerEmptyDto = new CustomerDto();
 
         for (Customer customer : customerPage) {
             CustomerDto customerDto1 = new CustomerDto();
             BeanUtils.copyProperties(customer, customerDto1);
             customerDtoList.add(customerDto1);
         }
-
         Page<CustomerDto> customerDtoListPage
                 = new PageImpl<>(customerDtoList, pageable, customerPage.getTotalElements());
-
         List<CustomerType> customerTypeList = (List<CustomerType>) customerTypeService.myFindAllCustomerType();
-
         model.addAttribute("customerTypeList", customerTypeList);
-        model.addAttribute("customerDto", customerDto);
+        model.addAttribute("customerEmptyDto", customerEmptyDto);
         model.addAttribute("customerDtoListPage", customerDtoListPage);
         return "/customer/list";
     }
 
+@GetMapping("/edit")
+public String editCustomerSdd(@ModelAttribute(value = "customerEmptyDto") CustomerDto customerDto,
+                                RedirectAttributes redirectAttributes) {
 
+        Customer customer = new Customer();
+        BeanUtils.copyProperties(customerDto, customer);
+        customerService.saveCustomer(customer);
+        return "redirect:/customer/";
+}
     @PostMapping("/create")
     private String addCustomer(@ModelAttribute("customerDto") CustomerDto customerDto,
                                BindingResult bindingResult,
@@ -93,10 +98,11 @@ public class CustomerController {
         List<CustomerType> customerTypeList = (List<CustomerType>) customerTypeService.myFindAllCustomerType();
 
         model.addAttribute("customerTypeList", customerTypeList);
-        model.addAttribute("customerDto", customerDto);
+        model.addAttribute("customerEmptyDto", customerDto);
         model.addAttribute("customerDtoListPage", customerDtoListPage);
         return "/customer/list";
     }
+
 
     @GetMapping("/edit/{id}")
     public String getCustomer(@ModelAttribute("customerDto") String customerDto,

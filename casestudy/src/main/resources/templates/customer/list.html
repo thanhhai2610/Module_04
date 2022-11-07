@@ -11,6 +11,7 @@
 </head>
 <body>
 
+<!--/*navbar*/-->
 <nav class=" navbar navbar-expand-lg bg-light ">
     <div class="container-fluid">
         <a class="navbar-brand fs-3" href="http://localhost:8080/"><img style="height: 50px; width: auto;"
@@ -98,8 +99,8 @@
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCreate">
     Create Blog
 </button>
-<form action="/customer/search" method="get">
 
+<form action="/customer/search" method="get">
     <input type="text" name="searchNname" placeholder="Search name">
     <input type="text" name="searchAddress" placeholder="Search address">
     <select name="searchGender">
@@ -108,7 +109,6 @@
         <option value="2">Khác</option>
     </select>
     <input class="btn btn-secondary" type="submit" value="Search">
-
 </form>
 
 <table class="table table-success table-striped">
@@ -124,7 +124,6 @@
         <td>Customer Type</td>
         <td>Edit</td>
         <td>Delete</td>
-        <td>View</td>
     </tr>
     <tr th:each="data, a : ${customerDtoListPage}">
         <td th:text="${a.count}"></td>
@@ -142,8 +141,15 @@
         <td th:text="${data.email}"></td>
         <td th:text="${data.address}"></td>
         <td th:text="${data.customerType.name}"></td>
-        <td><a th:href="@{/customer/edit/__${data.getId()}__}" class="btn btn-warning">Edit</a></td>
-        <!--        <td><a th:href="@{/customer/delete/__${data.getId()}__}" class="btn btn-danger">Delete</a></td>-->
+        <td>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-warning"
+                    th:attr="onclick=|showModalEditCustomer( '${data.id}','${data.name}', '${data.dateOfBirth}',
+                     '${data.gender}', '${data.idCard}', '${data.phoneNumber}', '${data.email}', '${data.address}', '${data.customerType.id}')|"
+                    data-bs-toggle="modal" data-bs-target="#editInfoModal">
+                Edit
+            </button>
+        </td>
         <td>
             <button type="button" th:data-id="${data.id}"
                     th:data-name="${data.name}"
@@ -152,9 +158,10 @@
             </button>
         </td>
 
-        <td><a th:href="@{/customer/view/__${data.getId()}__}" class="btn btn-primary">View</a></td>
     </tr>
 </table>
+
+<!--/*phân trang*/-->
 <div>
     <a th:href="@{'/customer'(page=${customerDtoListPage.number - 1})}"
        th:if="${customerDtoListPage.hasPrevious()}">Previous</a>
@@ -164,7 +171,6 @@
     <a th:href="@{'/customer'(page=${customerDtoListPage.number + 1})}"
        th:if="${customerDtoListPage.hasNext()}">Next</a>
 </div>
-
 
 <!--/*Modal Create */-->
 <div class="modal fade" id="modalCreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -177,7 +183,7 @@
             </div>
 
             <div class="modal-body">
-                <form th:action="@{/customer/create}" th:object="${customerDto}" method="post">
+                <form th:action="@{/customer/create}" th:object="${customerEmptyDto}" method="post">
                     <table>
                         <tr>
                             <td>Name:</td>
@@ -236,13 +242,6 @@
     </div>
 </div>
 
-<script>
-    function showModalDeleteCustomer(id, name) {
-        $('#nameDelete').text(name)
-        $('#confirmDelete').attr('href', 'customer/delete/'+ id);
-        $('#modalDelete').modal('show');
-    }
-</script>
 <!--Modal Xoá-->
 <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel-delete" aria-hidden="true">
     <div class="modal-dialog">
@@ -257,13 +256,126 @@
                 Bạn có muốn xóa khách hàng <strong id="nameDelete"></strong>?
             </div>
             <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
-                    <a id="confirmDelete" class="btn btn-danger" type="button">Xoá</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                <a id="confirmDelete" class="btn btn-danger" type="button">Xoá</a>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Modal Edit SangDD sup-->
+<div class="modal fade" id="editInfoModal" tabindex="-1" aria-labelledby="editInfoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form th:object="${customerEmptyDto}" action="/customer/edit">
+            <div class="modal-content">
+                <div class="modal-header bg-warning">
+                    <h5 class="modal-title" id="editInfoModalLabel">Edit customer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <input type="hidden" id="customer-id" th:field="*{id}">
+                        <tr>
+                            <td>Name:</td>
+                            <td>
+                                <input id="customer-name" type="text" th:field="*{name}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Date Birth:</td>
+                            <td><input id="customer-dateOfBirth" type="date" th:field="*{dateOfBirth}"></td>
+                        </tr>
+                        <tr>
+                            <td>Gender:</td>
+                            <td>
+                                <select id="customer-gender" th:field="*{gender}">
+                                    <option th:value="1">Nam</option>
+                                    <option th:value="0">Nữ</option>
+                                    <option th:value="2">Khác</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Id Card:</td>
+                            <td><input id="customer-idCard" type="text" th:field="*{idCard}"></td>
+                        </tr>
+                        <tr>
+                            <td>Phone:</td>
+                            <td><input id="customer-phoneNumber" type="text" th:field="*{phoneNumber}"></td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td><input id="customer-email" type="text" th:field="*{email}"></td>
+                        </tr>
+                        <tr>
+                            <td>Address:</td>
+                            <td><input id="customer-address" type="text" th:field="*{address}"></td>
+                        </tr>
+                        <tr>
+                            <td>Customer Type:</td>
+                            <td>
+                                <select id="customer-customerType" th:field="*{customerType}">
+                                    <option th:each="item : ${customerTypeList}"
+                                            th:value="${item.getId()}"
+                                            th:text="${item.getName()}"></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input type="submit" value="Create blog"></td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-warning">Save changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- End Modal Edit SangDD sup-->
+
+<script>
+
+    function showModalDeleteCustomer(id, name) {
+        $('#nameDelete').text(name)
+        $('#confirmDelete').attr('href', 'customer/delete/' + id);
+        $('#modalDelete').modal('show');
+    }
+
+    function showModalEditCustomer(
+        id, name,
+        dateOfBirth, gender, idCard,
+        phoneNumber, email, address, customerType) {
+
+        // document.getElementById('customer-id').value = id;
+        // document.getElementById('customer-name').value = name;
+        // document.getElementById('customer-dateOfBirth').value = dateOfBirth;
+        // document.getElementById('customer-gender').value = gender;
+        // document.getElementById('customer-idCard').value = idCard;
+        // document.getElementById('customer-phoneNumber').value = phoneNumber;
+        // document.getElementById('customer-email').value = email;
+        // document.getElementById('customer-address').value = address;
+        // document.getElementById('customer-customerType').value = customerType;
+
+        $('#customer-id').val(id);
+        $('#customer-name').val(name);
+        $('#customer-dateOfBirth').val(dateOfBirth);
+        $('#customer-gender').val(gender);
+        $('#customer-idCard').val(idCard);
+        $('#customer-phoneNumber').val(phoneNumber);
+        $('#customer-email').val(email);
+        $('#customer-address').val(address);
+        $('#customer-customerType').val(customerType);
+        $('#modalEdit').modal('show');
+    }
+
+
+
+</script>
 
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
