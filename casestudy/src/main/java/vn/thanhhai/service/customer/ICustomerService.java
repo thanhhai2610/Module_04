@@ -12,17 +12,7 @@ public interface ICustomerService {
 
     Page<Customer> search(String name, String address, String customerType,Pageable pageable);
 
-//    List<Customer> findAll();
-//
-//    Customer findById(int id);
-//
-//    Customer findByName(String name);
-
-//    void saveCustomer(Customer customer);
-//
     void removeById(int id);
-//
-//    void updateCustomer(Customer customer);
 
 
 }

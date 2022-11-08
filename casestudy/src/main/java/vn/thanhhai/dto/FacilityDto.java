@@ -1,47 +1,30 @@
-package vn.thanhhai.model.facility;
+package vn.thanhhai.dto;
 
-import org.springframework.beans.factory.annotation.Value;
-import vn.thanhhai.model.contract.Contract;
+import vn.thanhhai.model.facility.Facility;
+import vn.thanhhai.model.facility.FacilityType;
+import vn.thanhhai.model.facility.RentType;
 
 import javax.persistence.*;
-import java.util.Set;
 
-@Entity
-@Table
-public class Facility {
+public class FacilityDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private double area;
     private double cost;
     private int max_people;
-    @ManyToOne
-    @JoinColumn(name = "rentType_id", referencedColumnName = "id")
     private RentType rentType;
-    @ManyToOne
-    @JoinColumn(name = "facilityType_id", referencedColumnName = "id")
     private FacilityType facilityType;
-
     private String standardRoom;
     private String descriptionOtherConvenience;
     private double poolArea;
     private int numberOfFloors;
     private String facilityFree;
 
-
-
-    @Value("1")
-    private int isDelete =1;
-
-    @OneToMany(mappedBy = "facility")
-    private Set<Contract> contract;
-
-    public Facility() {
+    public FacilityDto() {
     }
 
-    public Facility(int id, String name, double area, double cost, int max_people, RentType rentType, FacilityType facilityType, String standardRoom, String descriptionOtherConvenience, double poolArea, int numberOfFloors, String facilityFree, int isDelete, Set<Contract> contract) {
+    public FacilityDto(int id, String name, double area, double cost, int max_people, RentType rentType, FacilityType facilityType, String standardRoom, String descriptionOtherConvenience, double poolArea, int numberOfFloors, String facilityFree) {
         this.id = id;
         this.name = name;
         this.area = area;
@@ -54,8 +37,6 @@ public class Facility {
         this.poolArea = poolArea;
         this.numberOfFloors = numberOfFloors;
         this.facilityFree = facilityFree;
-        this.isDelete = isDelete;
-        this.contract = contract;
     }
 
     public int getId() {
@@ -152,21 +133,5 @@ public class Facility {
 
     public void setFacilityFree(String facilityFree) {
         this.facilityFree = facilityFree;
-    }
-
-    public int getIsDelete() {
-        return isDelete;
-    }
-
-    public void setIsDelete(int isDelete) {
-        this.isDelete = isDelete;
-    }
-
-    public Set<Contract> getContract() {
-        return contract;
-    }
-
-    public void setContract(Set<Contract> contract) {
-        this.contract = contract;
     }
 }

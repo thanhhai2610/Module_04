@@ -28,19 +28,19 @@ public interface ICustomerRepo extends JpaRepository<Customer, Integer> {
                           @Param("type") String customerType, Pageable pageable);
 
 
-    @Modifying
-    @Query(value = "INSERT INTO `case_study_m4`.`customer` (`address`, `date_of_birth`, `email`, " +
-            "`gender`, `id_card`, `is_delete`, `name`, `phone_number`, `customer_type_id`) " +
-            "VALUES (:address ,:date_of_birth ,:email ,:gender ,:id_card ,:is_delete ,:name ,:phone_number ,:customer_type_id )", nativeQuery = true)
-    void saveCustomer(@Param("address") String address,
-                      @Param("date_of_birth") String dateOfBirth,
-                      @Param("email") String email,
-                      @Param("gender") int gender,
-                      @Param("id_card") String idCard,
-                      @Param("is_delete") int isDelete,
-                      @Param("name") String name,
-                      @Param("phone_number") String phoneNumber,
-                      @Param("customer_type_id") int customerTypeId);
+//    @Modifying
+//    @Query(value = "INSERT INTO `case_study_m4`.`customer` (`address`, `date_of_birth`, `email`, " +
+//            "`gender`, `id_card`, `is_delete`, `name`, `phone_number`, `customer_type_id`) " +
+//            "VALUES (:address ,:date_of_birth ,:email ,:gender ,:id_card ,:is_delete ,:name ,:phone_number ,:customer_type_id )", nativeQuery = true)
+//    void saveCustomer(@Param("address") String address,
+//                      @Param("date_of_birth") String dateOfBirth,
+//                      @Param("email") String email,
+//                      @Param("gender") int gender,
+//                      @Param("id_card") String idCard,
+//                      @Param("is_delete") int isDelete,
+//                      @Param("name") String name,
+//                      @Param("phone_number") String phoneNumber,
+//                      @Param("customer_type_id") int customerTypeId);
 
     @Transactional
     @Modifying
