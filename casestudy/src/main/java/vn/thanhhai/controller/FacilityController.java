@@ -122,7 +122,6 @@ public class FacilityController {
             redirect.addFlashAttribute("message", "Customer creation failed");
         }
         return "redirect:/customer/";
-
     }
 
 

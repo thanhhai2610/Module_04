@@ -146,7 +146,7 @@
         <td th:text="${data.max_people}"></td>
         <td th:text="${data.rentType.name}"></td>
         <td th:text="${data.facilityType.name}"></td>
-        <td><a type="button" class="btn btn-primary"
+        <td><a type="button" class="btn btn-warning"
                th:href="@{/facility/edit/__${data.getId()}__}">Sửa</a>
         </td>
         <td>
@@ -154,16 +154,20 @@
                     th:data-name="${data.name}"
                     onclick="showModalDeleteFacility(this.getAttribute('data-id'),
                                                      this.getAttribute('data-name'))"
-                    class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete"
-            >Xoá
+                    class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete">Xoá
             </button>
         </td>
         <td>
             <button type="button" class="btn btn-primary"
-                    data-bs-toggle="modal" data-bs-target="#modalDelete">Xem
+                    th:attr="onclick=|showModalViewFacility('${data.id}','${data.name}',
+                    '${data.facilityType.id}' ,
+                    '${data.area}','${data.cost}',
+                     '${data.max_people}', '${data.rentType.id}', '${data.standardRoom}',
+                      '${data.descriptionOtherConvenience}', '${data.poolArea}',
+                      '${data.numberOfFloors}', '${data.facilityFree}' )|"
+                    data-bs-toggle="modal" data-bs-target="#modalView">Xem
             </button>
         </td>
-
     </tr>
 </table>
 
@@ -198,6 +202,70 @@
     </div>
 </div>
 
+<!-- Modal Edit SangDD sup-->
+<div class="modal fade" id="modalView" tabindex="-1" aria-labelledby="viewInfoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form th:object="${facilityDto}">
+            <div class="modal-content">
+                <div class="modal-header bg-warning">
+                    <h5 class="modal-title" id="viewInfoModalLabel">View Facility</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped" style="text-align: left">
+                        <tr>
+                            <td>Tên</td>
+                            <td id="facility-name"></td>
+                        </tr>
+                        <tr>
+                            <td>Loại dịch vụ</td>
+                            <td><p id="facilityTypeSelect"></p></td>
+                        </tr>
+                        <tr>
+                            <td>Diện tích</td>
+                            <td id="facility-area"></td>
+                        </tr>
+                        <tr>
+                            <td>Giá</td>
+                            <td id="facility-cost"></td>
+                        </tr>
+                        <tr>
+                            <td>Số người tối đa</td>
+                            <td id="facility-max_people"></td>
+                        </tr>
+                        <tr>
+                            <td>Kiểu thuê</td>
+                            <td id="facility-rentType"></td>
+                        </tr>
+                        <tr class="villa house">
+                            <td>Tiêu chuẩn phòng</td>
+                            <td id="facility-standardRoom"></td>
+                        </tr>
+                        <tr class="villa house">
+                            <td>Mô tả</td>
+                            <td id="facility-descriptionOtherConvenience"></td>
+                        </tr>
+                        <tr class="villa">
+                            <td>Diện tích hồ bơi</td>
+                            <td id="facility-poolArea"></td>
+                        </tr>
+                        <tr class="villa house">
+                            <td>Số tầng</td>
+                            <td id="facility-numberOfFloors"></td>
+                        </tr>
+                        <tr class="room">
+                            <td>Dịch vụ miễn phí</td>
+                            <td id="facility-facilityFree"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- End Modal Edit SangDD sup-->
+
+
 <script>
 
     function showModalDeleteFacility(id, name) {
@@ -205,9 +273,39 @@
         $('#confirmDelete').attr('href', '/facility/delete/' + id);
         $('#modalDelete').modal('show');
     }
+
+    function showModalViewFacility(
+        id, name, facilityType, area, cost, max_people, rentType, standardRoom,
+        descriptionOtherConvenience, poolArea, numberOfFloors, facilityFree) {
+        $('#facility-id').text(id);
+        $('#facility-name').text(name);
+        $('#facilityTypeSelect').text(facilityType);
+        $('#facility-area').text(area);
+        $('#facility-cost').text(cost);
+        $('#facility-max_people').text(max_people);
+        $('#facility-rentType').text(rentType);
+        $('#facility-standardRoom').text(standardRoom);
+        $('#facility-descriptionOtherConvenience').text(descriptionOtherConvenience);
+        $('#facility-poolArea').text(poolArea);
+        $('#facility-numberOfFloors').text(numberOfFloors);
+        $('#facility-facilityFree').text(facilityFree);
+
+        $(".room").hide();
+        $(".house").hide();
+        $(".villa").hide();
+        switch (id) {
+            case "1" :
+                $(".villa").show();
+                break;
+            case "2" :
+                $(".house").show();
+                break;
+            case "3" :
+                $(".room").show();
+                break;
+        }
+    }
 </script>
-
-
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
