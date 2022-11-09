@@ -108,6 +108,19 @@ ct.deposit, ((IFNULL(SUM(cd.quantity * af.cost), 0) + f.cost)) AS total
  LEFT JOIN attach_facility af ON cd.attach_facility_id = af.id
  LEFT JOIN customer c ON ct.customer_id = c.id
  GROUP BY ct.id;
+ 
+ SELECT  facility.`name` AS `facilityName`,
+`customer`.`name` AS `customerName`, 
+`contract`.`id` AS id, 
+`contract`.`start_date` AS startDate, 
+`contract`.`end_date` AS endDate, 
+`contract`.`deposit`, ((IFNULL(SUM(`contract_detail`.`quantity` * `attach_facility`.`cost`), 0) + `facility`.`cost`)) AS total 
+ FROM `contract` 
+ LEFT JOIN `facility`  ON `contract`.`facility_id` = facility.`id` 
+ LEFT JOIN  `contract_detail`  ON `contract`.`id` = `contract_detail`.`contract_id` 
+ LEFT JOIN `attach_facility`  ON `contract_detail`.`attach_facility_id` = `attach_facility`.`id` 
+ LEFT JOIN `customer`  ON `customer`.`id` = `contract`.`customer_id`
+ GROUP BY `contract`.`id` ;
 
 select af.name as nameDto,  
 af.unit as unitDto, 

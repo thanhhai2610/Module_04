@@ -80,10 +80,9 @@
 </nav>
 
 
-<a type="button" class="btn btn-primary" href="/contract/create">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCreate">
     Create Contract
-</a>
-
+</button>
 
 <table class="table table-success table-striped">
     <tr>
@@ -95,7 +94,6 @@
         <td>Tiền cọc</td>
         <td>Tổng tiền</td>
         <td>Các dịch vụ kèm theo</td>
-
     </tr>
 
     <tr th:each="data, a : ${contractDtoListPage}">
@@ -109,9 +107,9 @@
         <td>
             <button type="button" class="btn btn-primary"
                     th:attr="onclick=|infoContractID('${data.id}')|"
-                    data-bs-toggle="modal" data-bs-target="#modalCreate"> +
+                    data-bs-toggle="modal" data-bs-target="#modalCreateDetail"> +
             </button>
-            <button type="button" class="btn btn-primary"
+            <button type="button" class="btn btn-warning"
                     th:attr="onclick=|infoContractId('${data.id}')|"
                     data-bs-toggle="modal" data-bs-target="#showAttachDetail"> Danh sách dịch vụ đi kèm
             </button>
@@ -121,17 +119,35 @@
 </table>
 
 <!--/*phân trang*/-->
-<!--<div>-->
-<!--    <a th:href="@{'/facility'(page=${facilityDtoListPage.number - 1}, searchName=${searchName}, searchFacilityTypeList=${searchFacilityTypeList})}"-->
-<!--       th:if="${facilityDtoListPage.hasPrevious()}" title="previous page">Previous</a>-->
-<!--    <a href="#" class="active"><span-->
-<!--            th:text="${facilityDtoListPage.number+1}+'/'+${facilityDtoListPage.totalPages}"></span></a>-->
-<!--    <a th:href="@{'/facility'(page=${facilityDtoListPage.number + 1}, searchName=${searchName}, searchFacilityTypeList=${searchFacilityTypeList})}"-->
-<!--       th:if="${facilityDtoListPage.hasNext()}" title="next page">Next</a>-->
-<!--</div>-->
+<nav aria-label="..." class="justify-content-center d-flex ">
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link"
+                                 th:href="@{'/contract'(page=${contractDtoListPage.number - 1})}"
+                                 th:if="${contractDtoListPage.hasPrevious()}"> Previous </a></li>
 
-<!--/*Modal Create */-->
-<div class="modal fade" id="modalCreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <li class="page-item"><a class="page-link"
+                                 th:href="@{'/contract'(page=${contractDtoListPage.number - 1})}"
+                                 th:if="${contractDtoListPage.hasPrevious()}"
+                                 th:text="${contractDtoListPage.number}"></a></li>
+
+        <li class="page-item active"><a class="page-link"
+                                        th:href="@{'/contract'(page=${contractDtoListPage.number})}"
+                                        th:text="${contractDtoListPage.number + 1}">
+            <span class="sr-only">(Current page)</span></a></li>
+
+        <li class="page-item"><a class="page-link"
+                                 th:href="@{'/contract'(page=${contractDtoListPage.number + 1})}"
+                                 th:if="${contractDtoListPage.hasNext()}"
+                                 th:text="${contractDtoListPage.number + 2}"></a></li>
+
+        <li class="page-item"><a class="page-link"
+                                 th:href="@{'/contract'(page=${contractDtoListPage.number + 1})}"
+                                 th:if="${contractDtoListPage.hasNext()}">Next</a> </li>
+    </ul>
+</nav>
+
+<!--/*Modal CreateDetail  */-->
+<div class="modal fade" id="modalCreateDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -184,7 +200,7 @@
                         aria-label="Close"></button>
             </div>
 
-            <table class="table table-white" style="text-align: center;color: black" >
+            <table class="table table-white" style="text-align: center;color: black">
                 <thead>
                 <tr>
                     <th>Name</th>
@@ -199,11 +215,87 @@
     </div>
 </div>
 
+<!--/*Modal Create contract */-->
+<div class="modal fade" id="modalCreate" tabindex="-1" aria-labelledby="exampleModalLabel-create" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel-create">Create new Blog</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form th:action="@{/contract/create}" th:object="${contractEmptyDto}" method="post">
+                    <table>
+                        <tr>
+                            <td>Tên dịch vụ:</td>
+                            <td>
+                                <select th:field="*{facility.id}">
+                                    <option th:each="item : ${facilityList}"
+                                            th:value="${item.getId()}"
+                                            th:text="${item.getName()}"></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ngày bắt dầu:</td>
+                            <td><input type="date" th:field="*{startDate}"></td>
+                        </tr>
+                        <tr>
+                            <td>Ngày kết thúc:</td>
+                            <td><input type="date" th:field="*{endDate}"></td>
+                        </tr>
+                        <tr>
+                            <td>Đặt cọc:</td>
+                            <td><input type="text" th:field="*{deposit}"></td>
+                        </tr>
+                        <tr>
+                            <td>Tên khách hàng:</td>
+                            <td>
+                                <select th:field="*{customer.id}">
+                                    <option th:each="item : ${customerList}"
+                                            th:value="${item.getId()}"
+                                            th:text="${item.getName()}"></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tên nhân viên :</td>
+                            <td>
+                                <select th:field="*{employee.id}">
+                                    <option th:each="item : ${employeeList}"
+                                            th:value="${item.getId()}"
+                                            th:text="${item.getName()}"></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                <input class="btn btn-primary"
+                                       type="submit" value="Thêm hợp mới đồng">
+                            </td>
+                        </tr>
+
+                    </table>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 
 <script>
+
     function infoContractID(id) {
         $("#id1").val(id);
     }
+
+    $("#modalCreateDetail").on('hidden.bs.modal', () => $("#modalCreate").modal('show'))
+
+
     function infoContractId(id) {
 
         $("#attachFacilityList").empty();
@@ -226,6 +318,7 @@
             }
         })
     }
+
 </script>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

@@ -28,7 +28,7 @@ public class ContractService implements IContractService {
 
     @Override
     public void saveContract(Contract contract) {
-
+        contractRepo.save(contract);
     }
 
     @Override

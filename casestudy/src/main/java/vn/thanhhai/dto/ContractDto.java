@@ -19,7 +19,6 @@ public class ContractDto {
     private double total;
 
     public ContractDto() {
-
     }
 
     public ContractDto(int id, String startDate, String endDate, double deposit, Customer customer, Employee employee, Facility facility, Set<ContractDetail> contractDetails, double total) {
