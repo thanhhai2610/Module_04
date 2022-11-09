@@ -1,5 +1,7 @@
 package vn.thanhhai.model.employee;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Value;
 import vn.thanhhai.model.contract.Contract;
 
@@ -21,14 +23,19 @@ public class Employee {
     private String address;
 
     @ManyToOne
+    @JsonIgnore
+    @JsonBackReference
     @JoinColumn(name = "position_id", referencedColumnName = "id")
     private Position position;
 
     @ManyToOne
+    @JsonIgnore
+    @JsonBackReference
     @JoinColumn(name = "educationDegree_id", referencedColumnName = "id")
     private EducationDegree educationDegree;
 
-    @ManyToOne
+    @ManyToOne   @JsonIgnore
+    @JsonBackReference
     @JoinColumn(name = "division_id", referencedColumnName = "id")
     private Division division;
 
@@ -38,6 +45,8 @@ public class Employee {
 
 
     @OneToMany(mappedBy = "employee")
+    @JsonIgnore
+    @JsonBackReference
     private Set<Contract> contract;
 
     @Value("1")

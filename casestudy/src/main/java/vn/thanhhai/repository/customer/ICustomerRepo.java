@@ -10,12 +10,16 @@ import org.springframework.stereotype.Repository;
 import vn.thanhhai.model.customer.Customer;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 public interface ICustomerRepo extends JpaRepository<Customer, Integer> {
 
     @Query(value = "SELECT * FROM case_study_m4.customer WHERE is_delete=1 ", nativeQuery = true)
     Page<Customer> myFindAll(Pageable pageable);
+
+    @Query(value = "SELECT * FROM case_study_m4.customer WHERE is_delete=1 ", nativeQuery = true)
+    List<Customer> myFindAllList();
 
     @Query(value = "SELECT * FROM customer c" +
             "    inner join customer_type ct on c.customer_type_id = ct.id" +

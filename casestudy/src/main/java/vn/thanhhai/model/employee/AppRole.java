@@ -1,5 +1,7 @@
 package vn.thanhhai.model.employee;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
@@ -14,6 +16,8 @@ public class AppRole {
     private String roleName;
 
     @ManyToMany(mappedBy = "appRole")
+    @JsonIgnore
+    @JsonBackReference
     private Set<AppUser> appUser;
 
     @Value("1")

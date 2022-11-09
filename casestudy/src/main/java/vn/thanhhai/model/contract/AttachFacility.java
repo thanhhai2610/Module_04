@@ -1,5 +1,8 @@
 package vn.thanhhai.model.contract;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -14,20 +17,25 @@ public class AttachFacility {
     private String unit;
     private String status;
 
-
+    @JsonBackReference
     @OneToMany(mappedBy ="attachFacility")
     private Set<ContractDetail> contractDetail;
+
+    @Value("1")
+    private int isDelete =1;
+
 
     public AttachFacility() {
     }
 
-    public AttachFacility(int id, String name, double cost, String unit, String status, Set<ContractDetail> contractDetail) {
+    public AttachFacility(int id, String name, double cost, String unit, String status, Set<ContractDetail> contractDetail, int isDelete) {
         this.id = id;
         this.name = name;
         this.cost = cost;
         this.unit = unit;
         this.status = status;
         this.contractDetail = contractDetail;
+        this.isDelete = isDelete;
     }
 
     public int getId() {
@@ -76,5 +84,13 @@ public class AttachFacility {
 
     public void setContractDetail(Set<ContractDetail> contractDetail) {
         this.contractDetail = contractDetail;
+    }
+
+    public int getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(int isDelete) {
+        this.isDelete = isDelete;
     }
 }

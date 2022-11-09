@@ -67,34 +67,54 @@ INSERT INTO `case_study_m4`.`facility` (`id`, `area`, `cost`, `is_delete`, `max_
 INSERT INTO `case_study_m4`.`facility` (`id`, `area`, `cost`, `is_delete`, `max_people`, `name`, `facility_type_id`, `rent_type_id`, `description_other_convenience`, `facility_free`, `number_of_floors`, `pool_area`, `standard_room`) VALUES ('5', '10000', '4000000', '1', '5', 'House Princess 02', '2', '3', 'Có thêm bếp nướng', null, '2', '0', 'normal');
 INSERT INTO `case_study_m4`.`facility` (`id`, `area`, `cost`, `is_delete`, `max_people`, `name`, `facility_type_id`, `rent_type_id`, `description_other_convenience`, `facility_free`, `number_of_floors`, `pool_area`, `standard_room`) VALUES ('6', '3000', '900000', '1', '2', 'Room Twin 02', '3', '4', 'Có tivi', '1 Xe máy', '0', '0', 'normal');
 
-INSERT INTO `case_study_m4`.`attach_facility` (`id`, `cost`, `name`, `status`, `unit`) VALUES ('1', '10000', 'Karaoke', 'tiện nghi, hiện tại', 'giờ');
-INSERT INTO `case_study_m4`.`attach_facility` (`id`, `cost`, `name`, `status`, `unit`) VALUES ('2', '10000', 'Thuê xe máy', 'hỏng 1 xe', 'chiếc');
-INSERT INTO `case_study_m4`.`attach_facility` (`id`, `cost`, `name`, `status`, `unit`) VALUES ('3', '20000', 'Thuê xe đạp', 'tốt', 'chiếc');
-INSERT INTO `case_study_m4`.`attach_facility` (`id`, `cost`, `name`, `status`, `unit`) VALUES ('4', '15000', 'Buffet buổi sáng', 'đầy đủ đồ ăn, tráng miệng', 'suất');
-INSERT INTO `case_study_m4`.`attach_facility` (`id`, `cost`, `name`, `status`, `unit`) VALUES ('5', '90000', 'Buffet buổi trưa', 'đầy đủ đồ ăn, tráng miệng', 'suất');
-INSERT INTO `case_study_m4`.`attach_facility` (`id`, `cost`, `name`, `status`, `unit`) VALUES ('6', '16000', 'Buffet buổi tối', 'đầy đủ đồ ăn, tráng miệng', 'suất');
+INSERT INTO `case_study_m4`.`attach_facility` (`id`, `cost`, `name`, `status`, `unit`,`is_delete`) VALUES ('1', '10000', 'Karaoke', 'tiện nghi, hiện tại', 'giờ', '1');
+INSERT INTO `case_study_m4`.`attach_facility` (`id`, `cost`, `name`, `status`, `unit`,`is_delete`) VALUES ('2', '10000', 'Thuê xe máy', 'hỏng 1 xe', 'chiếc', '1');
+INSERT INTO `case_study_m4`.`attach_facility` (`id`, `cost`, `name`, `status`, `unit`,`is_delete`) VALUES ('3', '20000', 'Thuê xe đạp', 'tốt', 'chiếc', '1');
+INSERT INTO `case_study_m4`.`attach_facility` (`id`, `cost`, `name`, `status`, `unit`,`is_delete`) VALUES ('4', '15000', 'Buffet buổi sáng', 'đầy đủ đồ ăn, tráng miệng', 'suất', '1');
+INSERT INTO `case_study_m4`.`attach_facility` (`id`, `cost`, `name`, `status`, `unit`,`is_delete`) VALUES ('5', '90000', 'Buffet buổi trưa', 'đầy đủ đồ ăn, tráng miệng', 'suất', '1');
+INSERT INTO `case_study_m4`.`attach_facility` (`id`, `cost`, `name`, `status`, `unit`,`is_delete`) VALUES ('6', '16000', 'Buffet buổi tối', 'đầy đủ đồ ăn, tráng miệng', 'suất', '1');
 
-INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`) VALUES ('1', '0', '2020-12-08', '2020-12-08', '1', '3', '3');
-INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`) VALUES ('2', '200000', '2020-07-21', '2020-07-14', '3', '7', '1');
-INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`) VALUES ('3', '50000', '2021-03-17', '2021-03-15', '4', '3', '2');
-INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`) VALUES ('4', '100000', '2021-01-18', '2021-01-14', '5', '7', '5');
-INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`) VALUES ('5', '0', '2021-07-15', '2021-07-14', '2', '7', '6');
-INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`) VALUES ('6', '0', '2021-06-03', '2021-06-01', '7', '7', '6');
-INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`) VALUES ('7', '100000', '2021-09-05', '2021-09-02', '4', '7', '4');
-INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`) VALUES ('8', '150000', '2021-06-18', '2021-06-17', '4', '3', '1');
-INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`) VALUES ('9', '0', '2020-11-19', '2020-11-19', '4', '3', '3');
-INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`) VALUES ('10', '0', '2021-04-14', '2021-04-12', '3', '10', '5');
-INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`) VALUES ('11', '0', '2021-04-25', '2021-04-25', '2', '2', '1');
-INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`) VALUES ('12', '0', '2021-05-27', '2021-05-25', '10', '7', '1');
+INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`,`is_delete`) VALUES ('1', '0', '2020-12-08', '2020-12-08', '1', '3', '3', '1');
+INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`,`is_delete`) VALUES ('2', '200000', '2020-07-21', '2020-07-14', '3', '7', '1', '1');
+INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`,`is_delete`) VALUES ('3', '50000', '2021-03-17', '2021-03-15', '4', '3', '2', '1');
+INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`,`is_delete`) VALUES ('4', '100000', '2021-01-18', '2021-01-14', '5', '7', '5', '1');
+INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`,`is_delete`) VALUES ('5', '0', '2021-07-15', '2021-07-14', '2', '7', '6', '1');
+INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`,`is_delete`) VALUES ('6', '0', '2021-06-03', '2021-06-01', '7', '7', '6', '1');
+INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`,`is_delete`) VALUES ('7', '100000', '2021-09-05', '2021-09-02', '4', '7', '4', '1');
+INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`,`is_delete`) VALUES ('8', '150000', '2021-06-18', '2021-06-17', '4', '3', '1', '1');
+INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`,`is_delete`) VALUES ('9', '0', '2020-11-19', '2020-11-19', '4', '3', '3', '1');
+INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`,`is_delete`) VALUES ('10', '0', '2021-04-14', '2021-04-12', '3', '10', '5', '1');
+INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`,`is_delete`) VALUES ('11', '0', '2021-04-25', '2021-04-25', '2', '2', '1', '1');
+INSERT INTO `case_study_m4`.`contract` (`id`, `deposit`, `end_date`, `start_date`, `customer_id`, `employee_id`, `facility_id`,`is_delete`) VALUES ('12', '0', '2021-05-27', '2021-05-25', '10', '7', '1', '1');
 
-INSERT INTO `case_study_m4`.`contract_detail` (`id`, `quantity`, `attach_facility_id`, `contract_id`) VALUES ('1', '5', '4', '2');
-INSERT INTO `case_study_m4`.`contract_detail` (`id`, `quantity`, `attach_facility_id`, `contract_id`) VALUES ('2', '8', '5', '2');
-INSERT INTO `case_study_m4`.`contract_detail` (`id`, `quantity`, `attach_facility_id`, `contract_id`) VALUES ('3', '15', '6', '2');
-INSERT INTO `case_study_m4`.`contract_detail` (`id`, `quantity`, `attach_facility_id`, `contract_id`) VALUES ('4', '1', '1', '3');
-INSERT INTO `case_study_m4`.`contract_detail` (`id`, `quantity`, `attach_facility_id`, `contract_id`) VALUES ('5', '11', '2', '3');
-INSERT INTO `case_study_m4`.`contract_detail` (`id`, `quantity`, `attach_facility_id`, `contract_id`) VALUES ('6', '1', '3', '1');
-INSERT INTO `case_study_m4`.`contract_detail` (`id`, `quantity`, `attach_facility_id`, `contract_id`) VALUES ('7', '2', '2', '1');
-INSERT INTO `case_study_m4`.`contract_detail` (`id`, `quantity`, `attach_facility_id`, `contract_id`) VALUES ('8', '2', '2', '12');
+INSERT INTO `case_study_m4`.`contract_detail` (`id`, `quantity`, `attach_facility_id`, `contract_id`,`is_delete`) VALUES ('1', '5', '4', '2', '1');
+INSERT INTO `case_study_m4`.`contract_detail` (`id`, `quantity`, `attach_facility_id`, `contract_id`,`is_delete`) VALUES ('2', '8', '5', '2', '1');
+INSERT INTO `case_study_m4`.`contract_detail` (`id`, `quantity`, `attach_facility_id`, `contract_id`,`is_delete`) VALUES ('3', '15', '6', '2', '1');
+INSERT INTO `case_study_m4`.`contract_detail` (`id`, `quantity`, `attach_facility_id`, `contract_id`,`is_delete`) VALUES ('4', '1', '1', '3', '1');
+INSERT INTO `case_study_m4`.`contract_detail` (`id`, `quantity`, `attach_facility_id`, `contract_id`,`is_delete`) VALUES ('5', '11', '2', '3', '1');
+INSERT INTO `case_study_m4`.`contract_detail` (`id`, `quantity`, `attach_facility_id`, `contract_id`,`is_delete`) VALUES ('6', '1', '3', '1', '1');
+INSERT INTO `case_study_m4`.`contract_detail` (`id`, `quantity`, `attach_facility_id`, `contract_id`,`is_delete`) VALUES ('7', '2', '2', '1', '1');
+INSERT INTO `case_study_m4`.`contract_detail` (`id`, `quantity`, `attach_facility_id`, `contract_id`,`is_delete`) VALUES ('8', '2', '2', '12', '1');
 
+SELECT  f.`name` AS facilityName,
+c.`name` AS customerName,
+ct.id AS id,
+ct.start_date AS startDate,
+ct.end_date AS endDate,
+ct.deposit, ((IFNULL(SUM(cd.quantity * af.cost), 0) + f.cost)) AS total
+ FROM contract ct
+ LEFT JOIN facility f ON ct.facility_id = f.id
+ LEFT JOIN  contract_detail cd ON ct.id = cd.contract_id
+ LEFT JOIN attach_facility af ON cd.attach_facility_id = af.id
+ LEFT JOIN customer c ON ct.customer_id = c.id
+ GROUP BY ct.id;
 
-
+select af.name as nameDto,  
+af.unit as unitDto, 
+sum(ifnull(cd.quantity, 0)) as quantityDto,
+af.status as statusDto,
+af.cost as costDto 
+from contract_detail cd
+join attach_facility af on cd.attach_facility_id = af.id
+where cd.contract_id = 1 
+group by af.id;

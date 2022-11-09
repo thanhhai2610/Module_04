@@ -1,51 +1,28 @@
-package vn.thanhhai.model.contract;
+package vn.thanhhai.dto;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.beans.factory.annotation.Value;
+import vn.thanhhai.model.contract.ContractDetail;
 import vn.thanhhai.model.customer.Customer;
 import vn.thanhhai.model.employee.Employee;
 import vn.thanhhai.model.facility.Facility;
 
-import javax.persistence.*;
 import java.util.Set;
 
-@Entity
-@Table
-public class Contract {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ContractDto {
     private int id;
     private String startDate;
     private String endDate;
     private double deposit;
-
-    @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
-
-    @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "employee_id", referencedColumnName = "id")
     private Employee employee;
-
-    @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "facility_id", referencedColumnName = "id")
     private Facility facility;
-
-    @OneToMany(mappedBy = "contract")
-    @JsonBackReference
     private Set<ContractDetail> contractDetails;
+    private double total;
 
-    @Value("1")
-    private int isDelete =1;
+    public ContractDto() {
 
-    public Contract() {
     }
 
-    public Contract(int id, String startDate, String endDate, double deposit, Customer customer, Employee employee, Facility facility, Set<ContractDetail> contractDetails, int isDelete) {
+    public ContractDto(int id, String startDate, String endDate, double deposit, Customer customer, Employee employee, Facility facility, Set<ContractDetail> contractDetails, double total) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -54,7 +31,7 @@ public class Contract {
         this.employee = employee;
         this.facility = facility;
         this.contractDetails = contractDetails;
-        this.isDelete = isDelete;
+        this.total = total;
     }
 
     public int getId() {
@@ -121,11 +98,21 @@ public class Contract {
         this.contractDetails = contractDetails;
     }
 
-    public int getIsDelete() {
-        return isDelete;
+    public double getTotal() {
+        return total;
     }
 
-    public void setIsDelete(int isDelete) {
-        this.isDelete = isDelete;
+    public void setTotal(double total) {
+        this.total = total;
     }
+
+    public void getTotalCost() {
+        this.total = this.facility.getCost();
+        if (this.contractDetails != null) {
+            for (ContractDetail contractDetail : this.contractDetails) {
+                this.total += contractDetail.getQuantity() * contractDetail.getAttachFacility().getCost();
+            }
+        }
+    }
+
 }

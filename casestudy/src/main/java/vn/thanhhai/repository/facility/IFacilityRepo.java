@@ -10,6 +10,7 @@ import vn.thanhhai.model.customer.Customer;
 import vn.thanhhai.model.facility.Facility;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 public interface IFacilityRepo extends JpaRepository<Facility, Integer> {
 
@@ -38,4 +39,6 @@ public interface IFacilityRepo extends JpaRepository<Facility, Integer> {
     @Query(value = "UPDATE `case_study_m4`.`facility` SET `is_delete` = 0 WHERE (`id` = :id)", nativeQuery = true)
     void removeById(@Param("id") int id);
 
+    @Query(value = "SELECT * FROM case_study_m4.facility WHERE is_delete=1 ", nativeQuery = true)
+    List<Facility> myFindAllList();
 }

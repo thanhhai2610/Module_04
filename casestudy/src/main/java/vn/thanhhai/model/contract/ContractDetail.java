@@ -1,6 +1,9 @@
 package vn.thanhhai.model.contract;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,14 +23,19 @@ public class ContractDetail {
 
     private int quantity;
 
+    @Value("1")
+    private int isDelete =1;
+
+
     public ContractDetail() {
     }
 
-    public ContractDetail(int id, Contract contract, AttachFacility attachFacility, int quantity) {
+    public ContractDetail(int id, Contract contract, AttachFacility attachFacility, int quantity, int isDelete) {
         this.id = id;
         this.contract = contract;
         this.attachFacility = attachFacility;
         this.quantity = quantity;
+        this.isDelete = isDelete;
     }
 
     public int getId() {
@@ -60,5 +68,13 @@ public class ContractDetail {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public int getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(int isDelete) {
+        this.isDelete = isDelete;
     }
 }

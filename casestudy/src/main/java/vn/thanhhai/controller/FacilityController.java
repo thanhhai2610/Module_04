@@ -116,12 +116,11 @@ public class FacilityController {
             Facility facility = new Facility();
             BeanUtils.copyProperties(facilityDto, facility);
             facilityService.saveFacility(facility);
-
             redirect.addFlashAttribute("message", "Customer created successfully");
         } else {
             redirect.addFlashAttribute("message", "Customer creation failed");
         }
-        return "redirect:/customer/";
+        return "redirect:/facility/";
     }
 
 

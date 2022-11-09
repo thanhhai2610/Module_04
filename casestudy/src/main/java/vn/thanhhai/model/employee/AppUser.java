@@ -1,5 +1,7 @@
 package vn.thanhhai.model.employee;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
@@ -15,9 +17,13 @@ public class AppUser {
     private String password;
 
     @OneToOne(mappedBy = "appUser")
+    @JsonIgnore
+    @JsonBackReference
     private Employee employee;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
+    @JsonBackReference
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id "))

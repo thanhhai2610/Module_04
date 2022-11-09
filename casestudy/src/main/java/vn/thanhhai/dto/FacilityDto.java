@@ -1,10 +1,8 @@
 package vn.thanhhai.dto;
 
-import vn.thanhhai.model.facility.Facility;
 import vn.thanhhai.model.facility.FacilityType;
 import vn.thanhhai.model.facility.RentType;
 
-import javax.persistence.*;
 
 public class FacilityDto {
 

@@ -1,5 +1,7 @@
 package vn.thanhhai.model.employee;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Value;
 import vn.thanhhai.model.employee.Employee;
 
@@ -14,6 +16,8 @@ public class Position {
     private int id;
     private String name;
     @OneToMany(mappedBy = "position")
+    @JsonIgnore
+    @JsonBackReference
     private Set<Employee> employee;
 
     @Value("1")

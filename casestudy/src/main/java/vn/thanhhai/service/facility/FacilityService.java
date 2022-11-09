@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import vn.thanhhai.model.facility.Facility;
 import vn.thanhhai.repository.facility.IFacilityRepo;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -19,6 +20,11 @@ public class FacilityService implements IFacilityService {
     @Override
     public Page<Facility> myFindAll(String name, String id, Pageable pageable) {
         return facilityRepo.myFindAll(name, id, pageable);
+    }
+
+    @Override
+    public List<Facility> myFindAllList() {
+        return facilityRepo.myFindAllList();
     }
 
     @Override

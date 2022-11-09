@@ -1,5 +1,7 @@
 package vn.thanhhai.model.customer;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Value;
 import vn.thanhhai.model.contract.Contract;
 
@@ -14,6 +16,8 @@ public class Customer {
     private int id;
 
     @ManyToOne
+    @JsonIgnore
+    @JsonBackReference
     @JoinColumn(name = "customer_type_id", referencedColumnName = "id")
     private CustomerType customerType;
 
@@ -26,6 +30,8 @@ public class Customer {
     private String address;
 
     @OneToMany(mappedBy = "customer")
+    @JsonIgnore
+    @JsonBackReference
     private Set<Contract> contract;
 
     @Column(name="isDelete")

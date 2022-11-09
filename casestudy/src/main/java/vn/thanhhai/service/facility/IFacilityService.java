@@ -4,11 +4,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import vn.thanhhai.model.facility.Facility;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface IFacilityService {
 
-    Page<Facility> myFindAll(String name, String id,  Pageable pageable);
+    Page<Facility> myFindAll(String name, String id, Pageable pageable);
+
+    List<Facility> myFindAllList();
 
 
 //    Page<Customer> search(String name, String address, String customerType,Pageable pageable);
@@ -18,4 +21,5 @@ public interface IFacilityService {
     void saveFacility(Facility facility);
 
     Facility findById(int id);
+
 }

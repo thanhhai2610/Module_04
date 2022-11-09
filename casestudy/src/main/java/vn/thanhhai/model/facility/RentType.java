@@ -1,5 +1,7 @@
 package vn.thanhhai.model.facility;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Value;
 import vn.thanhhai.model.facility.Facility;
 
@@ -14,6 +16,8 @@ public class RentType {
     private int id;
     private String name;
     @OneToMany(mappedBy = "rentType")
+    @JsonIgnore
+    @JsonBackReference
     private Set<Facility> facility;
 
     @Value("1")

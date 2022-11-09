@@ -1,5 +1,7 @@
 package vn.thanhhai.model.customer;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Value;
 import vn.thanhhai.model.customer.Customer;
 
@@ -17,6 +19,8 @@ public class CustomerType {
 
 
     @OneToMany(mappedBy = "customerType")
+    @JsonIgnore
+    @JsonBackReference
     private Set<Customer>  customer;
 
     @Value("1")

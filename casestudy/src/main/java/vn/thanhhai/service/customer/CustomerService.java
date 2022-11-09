@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import vn.thanhhai.model.customer.Customer;
 import vn.thanhhai.repository.customer.ICustomerRepo;
 
+import java.util.List;
+
 @Service
 public class CustomerService implements ICustomerService {
 
@@ -17,6 +19,11 @@ public class CustomerService implements ICustomerService {
     @Override
     public Page<Customer> myFindAll(Pageable pageable) {
         return customerRepo.myFindAll(pageable);
+    }
+
+    @Override
+    public List<Customer> myFindAllList() {
+        return customerRepo.myFindAllList();
     }
 
     @Override

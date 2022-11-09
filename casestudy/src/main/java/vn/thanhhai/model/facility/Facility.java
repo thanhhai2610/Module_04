@@ -1,5 +1,7 @@
 package vn.thanhhai.model.facility;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Value;
 import vn.thanhhai.model.contract.Contract;
 
@@ -17,10 +19,16 @@ public class Facility {
     private double area;
     private double cost;
     private int max_people;
+
     @ManyToOne
+    @JsonIgnore
+    @JsonBackReference
     @JoinColumn(name = "rentType_id", referencedColumnName = "id")
     private RentType rentType;
+
     @ManyToOne
+    @JsonIgnore
+    @JsonBackReference
     @JoinColumn(name = "facilityType_id", referencedColumnName = "id")
     private FacilityType facilityType;
 
@@ -36,6 +44,8 @@ public class Facility {
     private int isDelete =1;
 
     @OneToMany(mappedBy = "facility")
+    @JsonIgnore
+    @JsonBackReference
     private Set<Contract> contract;
 
     public Facility() {

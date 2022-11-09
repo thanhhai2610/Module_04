@@ -80,88 +80,55 @@
 </nav>
 
 
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCreate">
-    Create Customer
-</button>
-<!--/*search*/-->
-<form action="/customer" method="get">
-    <input type="text" name="searchName" th:value="${searchName}" placeholder="Search name">
-    <input type="text" name="searchAddress" th:value="${searchAddress}" placeholder="Search address">
+<a type="button" class="btn btn-primary" href="/contract/create">
+    Create Contract
+</a>
 
-    <select name="searchCustomerTypeList" class="mx-3">
-        <option th:if="${searchCustomerTypeList}!=''"
-                th:value="${searchCustomerTypeList}"
-                th:text="${searchCustomerTypeList}"></option>
-        <option th:value="''"
-                th:text="'--All Type--'"></option>
-        <option th:each="customerTypeList: ${customerTypeList}"
-                th:value="${customerTypeList.name}"
-                th:text="${customerTypeList.name}"></option>
-    </select>
-
-    <input class="btn btn-secondary" type="submit" value="Search">
-</form>
 
 <table class="table table-success table-striped">
     <tr>
         <td>STT</td>
-        <td>Name</td>
-        <td>Date Birth</td>
-        <td>Gender</td>
-        <td>Id Card</td>
-        <td>Phone</td>
-        <td>Email</td>
-        <td>Address</td>
-        <td>Customer Type</td>
-        <td>Edit</td>
-        <td>Delete</td>
+        <td>Dịch vụ</td>
+        <td>Khách hàng</td>
+        <td>Ngày bắt đầu</td>
+        <td>Ngày kết thúc</td>
+        <td>Tiền cọc</td>
+        <td>Tổng tiền</td>
+        <td>Các dịch vụ kèm theo</td>
+
     </tr>
-    <tr th:each="data, a : ${customerDtoListPage}">
+
+    <tr th:each="data, a : ${contractDtoListPage}">
         <td th:text="${a.count}"></td>
-        <td th:text="${data.name}"></td>
-        <td th:text="${data.dateOfBirth}"></td>
-
-        <td th:switch="${data.gender}">
-            <span th:case="1">Nam</span>
-            <span th:case="0">Nữ</span>
-            <span th:case="2">Khác</span>
-        </td>
-
-        <td th:text="${data.idCard}"></td>
-        <td th:text="${data.phoneNumber}"></td>
-        <td th:text="${data.email}"></td>
-        <td th:text="${data.address}"></td>
-        <td th:text="${data.customerType.name}"></td>
+        <td th:text="${data.getFacility().name}"></td>
+        <td th:text="${data.getCustomer().name}"></td>
+        <td th:text="${data.startDate}"></td>
+        <td th:text="${data.endDate}"></td>
+        <td th:text="${data.deposit}"></td>
+        <td th:text="${data.getTotal()}"></td>
         <td>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-warning"
-                    th:attr="onclick=|showModalEditCustomer( '${data.id}','${data.name}', '${data.dateOfBirth}',
-                     '${data.gender}', '${data.idCard}', '${data.phoneNumber}', '${data.email}', '${data.address}', '${data.customerType.id}')|"
-                    data-bs-toggle="modal" data-bs-target="#editInfoModal">
-                Edit
+            <button type="button" class="btn btn-primary"
+                    th:attr="onclick=|infoContractID('${data.id}')|"
+                    data-bs-toggle="modal" data-bs-target="#modalCreate"> +
             </button>
-        </td>
-        <td>
-            <button type="button" th:data-id="${data.id}"
-                    th:data-name="${data.name}"
-                    onclick="showModalDeleteCustomer(this.getAttribute('data-id'),this.getAttribute('data-name'))"
-                    class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete">Delete
+            <button type="button" class="btn btn-primary"
+                    th:attr="onclick=|infoContractId('${data.id}')|"
+                    data-bs-toggle="modal" data-bs-target="#showAttachDetail"> Danh sách dịch vụ đi kèm
             </button>
-        </td>
 
+        </td>
     </tr>
 </table>
 
 <!--/*phân trang*/-->
-<div>
-    <a th:href="@{'/customer'(page=${customerDtoListPage.number - 1})}"
-       th:if="${customerDtoListPage.hasPrevious()}">Previous</a>
-    <span th:text="${customerDtoListPage.number+1}"></span>
-    <span th:text="${customerDtoListPage.totalPages}"></span>
-
-    <a th:href="@{'/customer'(page=${customerDtoListPage.number + 1})}"
-       th:if="${customerDtoListPage.hasNext()}">Next</a>
-</div>
+<!--<div>-->
+<!--    <a th:href="@{'/facility'(page=${facilityDtoListPage.number - 1}, searchName=${searchName}, searchFacilityTypeList=${searchFacilityTypeList})}"-->
+<!--       th:if="${facilityDtoListPage.hasPrevious()}" title="previous page">Previous</a>-->
+<!--    <a href="#" class="active"><span-->
+<!--            th:text="${facilityDtoListPage.number+1}+'/'+${facilityDtoListPage.totalPages}"></span></a>-->
+<!--    <a th:href="@{'/facility'(page=${facilityDtoListPage.number + 1}, searchName=${searchName}, searchFacilityTypeList=${searchFacilityTypeList})}"-->
+<!--       th:if="${facilityDtoListPage.hasNext()}" title="next page">Next</a>-->
+<!--</div>-->
 
 <!--/*Modal Create */-->
 <div class="modal fade" id="modalCreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -174,56 +141,28 @@
             </div>
 
             <div class="modal-body">
-                <form th:action="@{/customer/create}" th:object="${customerEmptyDto}" method="post">
+                <form th:action="@{/contract/create-attach}" method="post">
                     <table>
+                        <input id="id1" hidden name="contractId">
+
                         <tr>
-                            <td>Name:</td>
-                            <td><input type="text" th:field="*{name}"></td>
-                        </tr>
-                        <tr>
-                            <td>Date Birth:</td>
-                            <td><input type="date" th:field="*{dateOfBirth}"></td>
-                        </tr>
-                        <tr>
-                            <td>Gender:</td>
+                            <td>Hop dong chi tiet:</td>
                             <td>
-                                <select th:field="*{gender}">
-                                    <option th:value="1">Nam</option>
-                                    <option th:value="0">Nữ</option>
-                                    <option th:value="2">Khác</option>
+                                <select name="attachId">
+                                    <option th:each="item : ${attachFacilityList}"
+                                            th:value="${item.id}"
+                                            th:text="${item.name}+ '|' + ${item.cost}"></option>
                                 </select>
                             </td>
                         </tr>
                         <tr>
-                            <td>Id Card:</td>
-                            <td><input type="text" th:field="*{idCard}"></td>
-                        </tr>
-                        <tr>
-                            <td>Phone:</td>
-                            <td><input type="text" th:field="*{phoneNumber}"></td>
-                        </tr>
-                        <tr>
-                            <td>Email:</td>
-                            <td><input type="text" th:field="*{email}"></td>
-                        </tr>
-                        <tr>
-                            <td>Address:</td>
-                            <td><input type="text" th:field="*{address}"></td>
-                        </tr>
-                        <tr>
-                            <td>Customer Type:</td>
-                            <td>
-                                <select th:field="*{customerType}">
-                                    <option th:each="item : ${customerTypeList}"
-                                            th:value="${item.getId()}"
-                                            th:text="${item.getName()}"></option>
-                                </select>
-                            </td>
+                            <td>Quantity:</td>
+                            <td><input type="number" name="quantity"></td>
                         </tr>
                         </tr>
                         <tr>
                             <td></td>
-                            <td><input type="submit" value="Create blog"></td>
+                            <td><input type="submit" value="Save"></td>
                         </tr>
                     </table>
                 </form>
@@ -233,128 +172,61 @@
     </div>
 </div>
 
-<!--Modal Xoá-->
-<div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel-delete" aria-hidden="true">
+<!--/*Modal showAttachDetail */-->
+<div class="modal fade" id="showAttachDetail" tabindex="-1" aria-labelledby="exampleModalLabel-attachDetail"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel-delete">Xóa khách hàng</h5>
+                <h5 class="modal-title" id="exampleModalLabel-attachDetail">View</h5>
 
                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                Bạn có muốn xóa khách hàng <strong id="nameDelete"></strong>?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
-                <a id="confirmDelete" class="btn btn-danger" type="button">Xoá</a>
-            </div>
+
+            <table class="table table-white" style="text-align: center;color: black" >
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Unit</th>
+                </tr>
+                </thead>
+                <tbody id="attachFacilityList">
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
 
-<!-- Modal Edit SangDD sup-->
-<div class="modal fade" id="editInfoModal" tabindex="-1" aria-labelledby="editInfoModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <form th:object="${customerEmptyDto}" action="/customer/edit">
-            <div class="modal-content">
-                <div class="modal-header bg-warning">
-                    <h5 class="modal-title" id="editInfoModalLabel">Edit customer</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <table>
-                        <input type="hidden" id="customer-id" th:field="*{id}">
-                        <tr>
-                            <td>Name:</td>
-                            <td>
-                                <input id="customer-name" type="text" th:field="*{name}">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Date Birth:</td>
-                            <td><input id="customer-dateOfBirth" type="date" th:field="*{dateOfBirth}"></td>
-                        </tr>
-                        <tr>
-                            <td>Gender:</td>
-                            <td>
-                                <select id="customer-gender" th:field="*{gender}">
-                                    <option th:value="1">Nam</option>
-                                    <option th:value="0">Nữ</option>
-                                    <option th:value="2">Khác</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Id Card:</td>
-                            <td><input id="customer-idCard" type="text" th:field="*{idCard}"></td>
-                        </tr>
-                        <tr>
-                            <td>Phone:</td>
-                            <td><input id="customer-phoneNumber" type="text" th:field="*{phoneNumber}"></td>
-                        </tr>
-                        <tr>
-                            <td>Email:</td>
-                            <td><input id="customer-email" type="text" th:field="*{email}"></td>
-                        </tr>
-                        <tr>
-                            <td>Address:</td>
-                            <td><input id="customer-address" type="text" th:field="*{address}"></td>
-                        </tr>
-                        <tr>
-                            <td>Customer Type:</td>
-                            <td>
-                                <select id="customer-customerType" th:field="*{customerType}">
-                                    <option th:each="item : ${customerTypeList}"
-                                            th:value="${item.getId()}"
-                                            th:text="${item.getName()}"></option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><input type="submit" value="Create blog"></td>
-                        </tr>
-                    </table>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-warning">Save changes</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-<!-- End Modal Edit SangDD sup-->
 
 <script>
-
-    function showModalDeleteCustomer(id, name) {
-        $('#nameDelete').text(name)
-        $('#confirmDelete').attr('href', '/customer/delete/' + id);
-        $('#modalDelete').modal('show');
+    function infoContractID(id) {
+        $("#id1").val(id);
     }
+    function infoContractId(id) {
 
-    function showModalEditCustomer(
-        id, name,
-        dateOfBirth, gender, idCard,
-        phoneNumber, email, address, customerType) {
-        $('#customer-id').val(id);
-        $('#customer-name').val(name);
-        $('#customer-dateOfBirth').val(dateOfBirth);
-        $('#customer-gender').val(gender);
-        $('#customer-idCard').val(idCard);
-        $('#customer-phoneNumber').val(phoneNumber);
-        $('#customer-email').val(email);
-        $('#customer-address').val(address);
-        $('#customer-customerType').val(customerType);
-        $('#modalEdit').modal('show');
+        $("#attachFacilityList").empty();
+        $.ajax({
+            url: "http://localhost:8080/api/contract-detail/v1/" + id,
+            type: "GET",
+            contentType: "application/json; charset =utf-8",
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                let tr = [];
+                for (let i = 0; i < data.length; i++) {
+                    tr.push("<tr>")
+                    tr.push("<td>" + data[i].attachFacility.name + "</td>");
+                    tr.push("<td>" + data[i].quantity + "</td>");
+                    tr.push("<td>" + data[i].attachFacility.unit + "</td>");
+                    tr.push("</tr>")
+                }
+                $("#attachFacilityList").append(tr.join(""));
+            }
+        })
     }
-
 </script>
-
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
