@@ -1,0 +1,135 @@
+package vn.thanhhai.controller;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import vn.thanhhai.dto.ContractDto;
+import vn.thanhhai.model.contract.AttachFacility;
+import vn.thanhhai.model.contract.Contract;
+import vn.thanhhai.model.contract.ContractDetail;
+import vn.thanhhai.model.customer.Customer;
+import vn.thanhhai.model.customer.CustomerType;
+import vn.thanhhai.model.employee.Employee;
+import vn.thanhhai.model.facility.Facility;
+import vn.thanhhai.service.contract.IAttachFacilityService;
+import vn.thanhhai.service.contract.IContractDetailService;
+import vn.thanhhai.service.contract.IContractService;
+import vn.thanhhai.service.contract.IEmployeeService;
+import vn.thanhhai.service.customer.ICustomerService;
+import vn.thanhhai.service.facility.IFacilityService;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Controller
+@RequestMapping("/contract")
+public class ContractController {
+
+    @Autowired
+    private IContractService contractService;
+    @Autowired
+    private IContractDetailService contractDetailService;
+    @Autowired
+    private IAttachFacilityService attachFacilityService;
+    @Autowired
+    private ICustomerService customerService;
+    @Autowired
+    private IFacilityService facilityService;
+    @Autowired
+    private IEmployeeService employeeService;
+
+    @ModelAttribute("contractDetailList")
+    public List<ContractDetail> contractDetailList() {
+        return contractDetailService.myFindAll();
+    }
+
+    @ModelAttribute("attachFacilityList")
+    public List<AttachFacility> attachFacilityList() {
+        return attachFacilityService.myFindAllAttachFacility();
+    }
+
+    @ModelAttribute("customerList")
+    public List<Customer> customerList() {
+        return customerService.myFindAllList();
+    }
+
+    @ModelAttribute("facilityList")
+    public List<Facility> facilityList() {
+        return facilityService.myFindAllList();
+    }
+
+    @ModelAttribute("employeeList")
+    public List<Employee> employeeList() {
+        return employeeService.myFindAllEmployee();
+    }
+
+    @GetMapping("")
+    public String search(@PageableDefault(value = 5) Pageable pageable,
+                         Model model,
+                         RedirectAttributes redirectAttributes) {
+
+        Page<Contract> contractPage = contractService.myFindAll(pageable);
+        List<ContractDto> contractDtoList = new ArrayList<>();
+        ContractDto contractEmptyDto = new ContractDto();
+        for (Contract contract : contractPage) {
+            ContractDto contractDto1 = new ContractDto();
+            BeanUtils.copyProperties(contract, contractDto1);
+            contractDto1.getTotalCost();
+            contractDtoList.add(contractDto1);
+        }
+        Page<ContractDto> contractDtoListPage
+                = new PageImpl<>(contractDtoList, pageable, contractPage.getTotalElements());
+
+        model.addAttribute("contractEmptyDto", contractEmptyDto);
+        model.addAttribute("contractDtoListPage", contractDtoListPage);
+        return "/contract/list";
+    }
+
+    @PostMapping("/create-attach")
+    public String createAttach(@RequestParam(value = "attachId") int attachId,
+                               @RequestParam(value = "quantity") int quantity,
+                               @RequestParam(value = "contractId") int contractId, RedirectAttributes redirectAttributes) {
+
+        Contract contract = contractService.myFindById(contractId);
+        AttachFacility attachFacility = attachFacilityService.findAttachFacilityById(attachId);
+        ContractDetail contractDetailExit = contractDetailService.findContractDetail(attachId, contractId);
+
+        if (contractDetailExit != null) {
+            contractDetailExit.setQuantity(contractDetailExit.getQuantity() + quantity);
+            contractDetailService.saveContractDetail(contractDetailExit);
+        } else {
+            ContractDetail contractDetail = new ContractDetail();
+            contractDetail.setContract(contract);
+            contractDetail.setQuantity(quantity);
+            contractDetail.setAttachFacility(attachFacility);
+            contractDetailService.saveContractDetail(contractDetail);
+        }
+        redirectAttributes.addFlashAttribute("message", "Add Attach Facility successfully!");
+        return "redirect:/contract/";
+    }
+
+    @PostMapping("/create")
+    public String create(@ModelAttribute("contractEmptyDto") ContractDto contractDto,
+                         Model model, BindingResult bindingResult,
+                         RedirectAttributes redirect){
+        if (!bindingResult.hasErrors()){
+            Contract contract = new Contract();
+            BeanUtils.copyProperties(contractDto, contract);
+            contractService.saveContract(contract);
+        }else{
+            redirect.addFlashAttribute("message", "Customer creation failed");
+        }
+        return "redirect:/contract/";
+    }
+
+}
